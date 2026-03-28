@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="imu_xacro" params="xyz rpy parent_link">
+        <link name="imu">
+            <visual>
+                <geometry>
+                    <cylinder radius="0.01" length="0.01"/>
+                </geometry>
+                <material name="black">
+                    <color rgba="0 0 0 1"/>
+                </material>
+            </visual>
+        </link>
+        <joint name="imu" type="fixed">
+            <origin xyz="${xyz}" rpy="${rpy}"/>
+            <parent link="${parent_link}"/>
+            <child link="imu"/>
+        </joint>
+    </xacro:macro>
+</robot>

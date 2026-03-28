@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="joy" exec="joy_node">
+        <!-- <param name="device_name" value="Xbox Series X Controller" /> -->
+         <param name="device_name" value="DualSense Wireless Controller" />
+    </node>
+    <node pkg="gamepad_controller" exec="joy_controller" />
+    <node pkg="gamepad_controller" exec="motion_arbitrator" />
+    <node pkg="micro_ros_agent" exec="micro_ros_agent" args="serial --dev /dev/NodeMCU32S_tty" output="screen" />
+</launch>   

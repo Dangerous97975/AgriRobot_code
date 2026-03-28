@@ -1,0 +1,20 @@
+# sensor_positions.yaml
+VLP-16:
+  position:
+    x: 0.0
+    y: 0.0
+    z: 0.848
+  orientation: 
+    roll_deg: 0.0
+    pitch_deg: 0.0
+    yaw_deg: 0.0
+
+D455f:
+  position:
+    x: -0.095
+    y: 0.0
+    z: 0.181
+  orientation: 
+    roll_deg: 0.0
+    pitch_deg: 90.0
+    yaw_deg: 0.0

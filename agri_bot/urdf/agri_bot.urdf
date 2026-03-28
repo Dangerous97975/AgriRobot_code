@@ -1,0 +1,2535 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="agri_bot">
+
+	<link name="base_footprint">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+            <material name="transparent">
+                <color rgba="0 0 0 0" />
+            </material>
+        </visual>
+    </link>
+
+        <!-- 連接base_footprint和base_link的關節 -->
+    <joint name="base_footprint_to_base_link" type="fixed">
+        <origin xyz="0 0 0.58" rpy="0 0 0" />
+        <parent link="base_footprint" />
+        <child link="base_link" /> 
+    </joint>
+
+    <!-- <link name="Delta_robot_origin">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+            <material name="transparent">
+                <color rgba="0 0 0 0" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="Delta_robot_origin_to base_link" type="fixed">
+        <origin xyz="0 0 0.58" rpy="0 0 0" />
+        <parent link="Delta_robot_origin" />
+        <child link="base_link" />
+    </joint> -->
+
+    <link name="base_link">
+        <inertial>
+            <origin xyz="-0.004570600090845522 1.6139584867695493e-13 0.353939744160841" rpy="0.0 0.0 0.0" />
+            <mass value="71.03446007220968" />
+            <inertia ixx="22.595383680320836" iyy="9.073804410598045" izz="21.817544469628153" ixy="5.927453094578393e-12" iyz="1.7409576067933085e-13" ixz="-0.2127442029775954" />
+        </inertial>
+        <visual name="base_link_visual">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="base_link_collision">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+
+    <link name="left_bearingbox">
+        <inertial>
+            <origin xyz="5.826450433232822e-15 0.0495362580917727 0.02742309769158638" rpy="0.0 -0.0 0.0" />
+            <mass value="1.5818469378577413" />
+            <inertia ixx="0.0013513960471632502" iyy="0.001244997396059322" izz="0.001239600278753361" ixy="2.7755575615628914e-17" iyz="9.226022097505449e-06" ixz="1.6653345369377348e-16" />
+        </inertial>
+        <visual name="left_bearingbox_visual">
+            <origin xyz="-0.02999999999999915 0.08000000000005723 0.0050000000000017765" rpy="-3.1415926535897847 3.967738584944292e-14 -1.2246467991473678e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_bearingbox.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_bearingbox_collision">
+            <origin xyz="-0.02999999999999915 0.08000000000005723 0.0050000000000017765" rpy="-3.1415926535897847 3.967738584944292e-14 -1.2246467991473678e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_bearingbox.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+
+    <link name="left_bearinginnerring">
+        <inertial>
+            <origin xyz="-1.1368683772161603e-15 0.000999999999382233 8.434142273472389e-13" rpy="0.0 -0.0 -7.006492321624085e-46" />
+            <mass value="0.012264987159125" />
+            <inertia ixx="1.566585780750883e-06" iyy="3.12487211206764e-06" izz="1.56658574890201e-06" ixy="-2.1684043449710084e-19" iyz="2.1684043449710084e-19" ixz="-4.3368086899420173e-19" />
+        </inertial>
+        <visual name="left_bearinginnerring_visual">
+            <origin xyz="-1.1368683772161603e-15 -5.844214001626824e-14 2.415845301584341e-15" rpy="3.7816700496560284e-16 -4.984851880412876e-14 1.500188911565374e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_bearinginnerring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_bearinginnerring_collision">
+            <origin xyz="-1.1368683772161603e-15 -5.844214001626824e-14 2.415845301584341e-15" rpy="3.7816700496560284e-16 -4.984851880412876e-14 1.500188911565374e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_bearinginnerring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="leftdown_bearingouterring">
+        <inertial>
+            <origin xyz="-1.2079226507921704e-15 0.0027927001441577204 2.415845301584341e-15" rpy="0.0 -1.571972409883709e-62 0.0" />
+            <mass value="0.04002071791298718" />
+            <inertia ixx="5.108748578567383e-06" iyy="1.0021220792740676e-05" izz="5.108748578569985e-06" ixy="-3.1779423092776344e-35" iyz="-8.6736173798840345e-19" ixz="-7.65747089441414e-48" />
+        </inertial>
+        <visual name="leftdown_bearingouterring_visual">
+            <origin xyz="-1.2789769243681803e-15 0.005499999999941388 2.415845301584341e-15" rpy="-3.1415926535897927 -4.984851880412873e-14 1.5223933720578764e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/leftdown_bearingouterring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="leftdown_bearingouterring_collision">
+            <origin xyz="-1.2789769243681803e-15 0.005499999999941388 2.415845301584341e-15" rpy="-3.1415926535897927 -4.984851880412873e-14 1.5223933720578764e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/leftdown_bearingouterring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_movewheel">
+        <inertial>
+            <origin xyz="-6.022010995820892e-07 0.07784336592593726 -5.451452803129087e-07" rpy="-1.088002003030313e-59 -0.0 0.0" />
+            <mass value="38.53412412571526" />
+            <inertia ixx="0.2666413925375224" iyy="0.5045976624101378" izz="0.26664395146274344" ixy="8.257130978961413e-08" iyz="9.938382650176436e-08" ixz="3.283289933264655e-07" />
+        </inertial>
+        <visual name="left_movewheel_visual">
+            <origin xyz="-0.0209603168736669 0.08904545325000136 -0.02595157196394041" rpy="-3.1415926535897927 -1.5707963267947578 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_movewheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_movewheel_collision">
+            <origin xyz="-0.0209603168736669 0.08904545325000136 -0.02595157196394041" rpy="-3.1415926535897927 -1.5707963267947578 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_movewheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_Drummotorbracket">
+        <inertial>
+            <origin xyz="-0.021000000000004633 -0.07671786319976434 -2.771116669464391e-15" rpy="0.0 -0.0 0.0" />
+            <mass value="2.9974826864507502" />
+            <inertia ixx="0.0249437911411503" iyy="0.015352951052107985" izz="0.01658035002915592" ixy="4.9960036108132e-16" iyz="-5.551115123125782e-17" ixz="-7.771561172376095e-16" />
+        </inertial>
+        <visual name="left_Drummotorbracket_visual">
+            <origin xyz="-0.02100000000000087 0.004000000000059494 0.027499999999997086" rpy="-3.1415926535897842 1.570796326794858 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_Drummotorbracket.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_Drummotorbracket_collision">
+            <origin xyz="-0.02100000000000087 0.004000000000059494 0.027499999999997086" rpy="-3.1415926535897842 1.570796326794858 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_Drummotorbracket.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_rotatewheel">
+        <inertial>
+            <origin xyz="1.1299526758108413e-05 0.013875422928462592 -3.4937610265544093e-05" rpy="0.0 7.324725617479681e-90 0.0" />
+            <mass value="0.44477849225480476" />
+            <inertia ixx="0.0006783122802560548" iyy="5.8684606550701846e-05" izz="0.0006781459929107725" ixy="-2.793170155307445e-07" iyz="1.1834670127913727e-06" ixz="-8.242412308234748e-11" />
+        </inertial>
+        <visual name="left_rotatewheel_visual">
+            <origin xyz="-1.5631940186722204e-15 -0.02299999999994064 -2.3447910280083307e-15" rpy="-5.065393045260294e-15 -1.5707963267948581 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_rotatewheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_rotatewheel_collision">
+            <origin xyz="-1.5631940186722204e-15 -0.02299999999994064 -2.3447910280083307e-15" rpy="-5.065393045260294e-15 -1.5707963267948581 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_rotatewheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_bearingouterring">
+        <inertial>
+            <origin xyz="-1.2079226507921704e-15 0.0027072998557252604 2.3447910280083307e-15" rpy="0.0 -0.0 0.0" />
+            <mass value="0.04002071791298718" />
+            <inertia ixx="5.1087485785708525e-06" iyy="1.0021220792740673e-05" izz="5.1087485785691195e-06" ixy="4.1391243934965874e-35" iyz="1.5810698611962068e-35" ixz="-2.5188075176487254e-37" />
+        </inertial>
+        <visual name="left_bearingouterring_visual">
+            <origin xyz="-1.1368683772161603e-15 -5.840661287948024e-14 2.3447910280083307e-15" rpy="3.7816700495912767e-16 -4.98485188041287e-14 1.600108983781639e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_bearingouterring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_bearingouterring_collision">
+            <origin xyz="-1.1368683772161603e-15 -5.840661287948024e-14 2.3447910280083307e-15" rpy="3.7816700495912767e-16 -4.98485188041287e-14 1.600108983781639e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_bearingouterring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_supportwheel">
+        <inertial>
+            <origin xyz="-1.3021264066992444e-09 -3.336034808398836e-09 3.882261623289196e-09" rpy="-3.503246160812043e-46 -0.0 0.0" />
+            <mass value="23.932489693585044" />
+            <inertia ixx="0.13356656243484238" iyy="0.23246549518033693" izz="0.13356656107886605" ixy="-9.793243566315422e-10" iyz="2.5733411718324017e-09" ixz="9.606561079527686e-10" />
+        </inertial>
+        <visual name="left_supportwheel_visual">
+            <origin xyz="-0.005939333424050623 -0.03962809184484854 -0.014412262592265536" rpy="-1.5707963267948981 -3.085494822604161e-15 -1.255410482809058e-15" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_supportwheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_supportwheel_collision">
+            <origin xyz="-0.005939333424050623 -0.03962809184484854 -0.014412262592265536" rpy="-1.5707963267948981 -3.085494822604161e-15 -1.255410482809058e-15" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_supportwheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_Part8">
+        <inertial>
+            <origin xyz="1.397117400969705e-07 3.311591001420311e-11 0.04587153849968857" rpy="0.0 -0.0 0.0" />
+            <mass value="1.7481915664747825" />
+            <inertia ixx="0.010863931547654415" iyy="0.009199169535933083" izz="0.006960393408661503" ixy="6.704181654271224e-10" iyz="-1.3439971358053526e-11" ixz="-2.402501517173583e-08" />
+        </inertial>
+        <visual name="left_Part8_visual">
+            <origin xyz="-0.005939333424050126 0.03962809184484933 0.014412262592269052" rpy="1.570796326794895 3.316790792233649e-15 0.0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_Part8.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_Part8_collision">
+            <origin xyz="-0.005939333424050126 0.03962809184484933 0.014412262592269052" rpy="1.570796326794895 3.316790792233649e-15 0.0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_Part8.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_bearingbox">
+        <inertial>
+            <origin xyz="-2.6290081223123707e-15 -0.049536258091772895 0.02742309769158684" rpy="0.0 -0.0 0.0" />
+            <mass value="1.5818469378577413" />
+            <inertia ixx="0.0013513960471631947" iyy="0.0012449973960590999" izz="0.0012396002787534721" ixy="0.0" iyz="-9.226022097533204e-06" ixz="-1.6653345369377348e-16" />
+        </inertial>
+        <visual name="right_bearingbox_visual">
+            <origin xyz="0.030000000000000356 -0.08000000000005753 0.004999999999999219" rpy="-3.141592653589781 -5.93352722792121e-14 3.141592653589793" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_bearingbox.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_bearingbox_collision">
+            <origin xyz="0.030000000000000356 -0.08000000000005753 0.004999999999999219" rpy="-3.141592653589781 -5.93352722792121e-14 3.141592653589793" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_bearingbox.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_bearinginnerring">
+        <inertial>
+            <origin xyz="-2.842170943040401e-16 0.0010000000005006982 -8.422063046964468e-13" rpy="0.0 -0.0 0.0" />
+            <mass value="0.012264987159125" />
+            <inertia ixx="1.5665857807517503e-06" iyy="3.124872112068508e-06" izz="1.5665857489015767e-06" ixy="1.0842021724855042e-19" iyz="2.465089443029073e-36" ixz="-4.336808689942018e-19" />
+        </inertial>
+        <visual name="right_bearinginnerring_visual">
+            <origin xyz="-2.842170943040401e-16 0.0019999999999413733 -1.2079226507921704e-15" rpy="-3.1415926535897882 4.885763308318798e-14 -3.290423440013273e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_bearinginnerring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_bearinginnerring_collision">
+            <origin xyz="-2.842170943040401e-16 0.0019999999999413733 -1.2079226507921704e-15" rpy="-3.1415926535897882 4.885763308318798e-14 -3.290423440013273e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_bearinginnerring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="rightdown_bearingouterring">
+        <inertial>
+            <origin xyz="-2.1316282072803005e-16 -0.002792700144157685 9.237055564881303e-16" rpy="0.0 7.006492321624087e-46 0.0" />
+            <mass value="0.04002071791298718" />
+            <inertia ixx="5.108748578567383e-06" iyy="1.0021220792744142e-05" izz="5.1087485785691195e-06" ixy="4.336808689942017e-19" iyz="0.0" ixz="-3.2240736225892743e-35" />
+        </inertial>
+        <visual name="rightdown_bearingouterring_visual">
+            <origin xyz="-1.4210854715202004e-16 -0.005499999999941352 9.237055564881303e-16" rpy="4.8459883510669635e-15 -4.885763308319117e-14 3.362587936613908e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/rightdown_bearingouterring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="rightdown_bearingouterring_collision">
+            <origin xyz="-1.4210854715202004e-16 -0.005499999999941352 9.237055564881303e-16" rpy="4.8459883510669635e-15 -4.885763308319117e-14 3.362587936613908e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/rightdown_bearingouterring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_Drummotorbracket">
+        <inertial>
+            <origin xyz="0.010500000000000256 -0.07671786319976509 0.018186530000000332" rpy="0.0 2.4630137057615076e-59 -7.006492321624087e-46" />
+            <mass value="2.9974826864507502" />
+            <inertia ixx="0.024943791141150078" iyy="0.015352951052108654" izz="0.016580350029155914" ixy="8.881784197001251e-16" iyz="1.6653345369377336e-16" ixz="1.8042232917640713e-32" />
+        </inertial>
+        <visual name="right_Drummotorbracket_visual">
+            <origin xyz="0.010499999999998693 0.004000000000058925 0.045686530000000544" rpy="3.1415926535897682 1.5707963267948377 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_Drummotorbracket.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_Drummotorbracket_collision">
+            <origin xyz="0.010499999999998693 0.004000000000058925 0.045686530000000544" rpy="3.1415926535897682 1.5707963267948377 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_Drummotorbracket.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_rotatewheel">
+        <inertial>
+            <origin xyz="1.1299526758818957e-05 0.013875422928462342 -3.493761026192033e-05" rpy="0.0 -7.006492321624087e-46 1.4012984643248174e-45" />
+            <mass value="0.44477849225480476" />
+            <inertia ixx="0.0006783122802560824" iyy="5.868460655072959e-05" izz="0.0006781459929107586" ixy="-2.793170155029888e-07" iyz="1.1834670127844336e-06" ixz="-8.242412308234747e-11" />
+        </inertial>
+        <visual name="right_rotatewheel_visual">
+            <origin xyz="5.684341886080802e-16 -0.022999999999941068 1.1368683772161603e-15" rpy="3.490263584445585e-14 -1.5707963267948377 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_rotatewheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_rotatewheel_collision">
+            <origin xyz="5.684341886080802e-16 -0.022999999999941068 1.1368683772161603e-15" rpy="3.490263584445585e-14 -1.5707963267948377 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_rotatewheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_bearingouterring">
+        <inertial>
+            <origin xyz="-3.552713678800501e-16 0.0027072998557251537 -1.4921397450962103e-15" rpy="0.0 -0.0 0.0" />
+            <mass value="0.04002071791298718" />
+            <inertia ixx="5.108748578572589e-06" iyy="1.0021220792744145e-05" izz="5.108748578570854e-06" ixy="2.6638960507986627e-47" iyz="1.5810698611967544e-35" ixz="0.0" />
+        </inertial>
+        <visual name="right_bearingouterring_visual">
+            <origin xyz="-4.263256414560601e-16 -5.854872142663226e-14 -1.4921397450962103e-15" rpy="4.8459883510539694e-15 4.885763308318794e-14 -3.34593459124453e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_bearingouterring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_bearingouterring_collision">
+            <origin xyz="-4.263256414560601e-16 -5.854872142663226e-14 -1.4921397450962103e-15" rpy="4.8459883510539694e-15 4.885763308318794e-14 -3.34593459124453e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_bearingouterring.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_Part8">
+        <inertial>
+            <origin xyz="1.3971174013249767e-07 3.3115981068476684e-11 0.04587153849968871" rpy="0.0 -0.0 0.0" />
+            <mass value="1.7481915664747825" />
+            <inertia ixx="0.010863931547654415" iyy="0.009199169535932972" izz="0.006960393408661392" ixy="6.704182209382736e-10" iyz="-1.3440026869204758e-11" ixz="-2.402501511622468e-08" />
+        </inertial>
+        <visual name="right_Part8_visual">
+            <origin xyz="-0.005939333424049984 0.039628091844849535 0.014412262592269123" rpy="1.5707963267948941 2.706168128689806e-15 1.9721522630525772e-31" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_Part8.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_Part8_collision">
+            <origin xyz="-0.005939333424049984 0.039628091844849535 0.014412262592269123" rpy="1.5707963267948941 2.706168128689806e-15 1.9721522630525772e-31" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_Part8.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_supportwheel">
+        <inertial>
+            <origin xyz="-1.3021263711721076e-09 3.3360346662902885e-09 -3.882261054855008e-09" rpy="0.0 4.930380657631324e-32 1.7516230804060213e-46" />
+            <mass value="23.932489693585044" />
+            <inertia ixx="0.13356656243483767" iyy="0.23246549518033877" izz="0.13356656107886367" ixy="9.793252299810965e-10" iyz="2.5733409382149304e-09" ixz="-9.606555467870097e-10" />
+        </inertial>
+        <visual name="right_supportwheel_visual">
+            <origin xyz="-0.005939333424050481 0.03962809184484854 0.014412262592266174" rpy="1.5707963267948941 2.9374645921532875e-15 -4.9224607675854214e-18" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_supportwheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_supportwheel_collision">
+            <origin xyz="-0.005939333424050481 0.03962809184484854 0.014412262592266174" rpy="1.5707963267948941 2.9374645921532875e-15 -4.9224607675854214e-18" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_supportwheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Aluminum_145extrusion2">
+        <inertial>
+            <origin xyz="-0.010000000031342183 0.08366025842408131 -0.12490381084673594" rpy="-2.1349174499181335e-32 -0.0 0.0" />
+            <mass value="0.3939583913021997" />
+            <inertia ixx="0.0029697595175503834" iyy="0.002234855429556652" izz="0.0007650472535647536" ixy="7.69100584386983e-18" iyz="0.0012728912190990945" ixz="1.1587631322543836e-17" />
+        </inertial>
+        <visual name="Aluminum_145extrusion2_visual">
+            <origin xyz="-0.010000000000000071 0.14741025839693134 -0.23532204984491137" rpy="1.5707963267948966 1.0471975511966403 1.570796326794898" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Aluminum_145extrusion2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Aluminum_145extrusion2_collision">
+            <origin xyz="-0.010000000000000071 0.14741025839693134 -0.23532204984491137" rpy="1.5707963267948966 1.0471975511966403 1.570796326794898" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Aluminum_145extrusion2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Aluminum_145extrusion3">
+        <inertial>
+            <origin xyz="-0.010000000031341827 0.08366025836981812 0.12490381087806476" rpy="0.0 -0.0 0.0" />
+            <mass value="0.3939583913021997" />
+            <inertia ixx="0.0029697595175502745" iyy="0.002234855429556647" izz="0.0007650472535647582" ixy="-9.73342400034044e-18" iyz="-0.0012728912190990878" ixz="8.402007954813626e-18" />
+        </inertial>
+        <visual name="Aluminum_145extrusion3_visual">
+            <origin xyz="-0.009999999999999502 0.14741025839695648 0.23532204984489824" rpy="1.570796326794897 -1.0471975511965441 1.5707963267948941" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Aluminum_145extrusion3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Aluminum_145extrusion3_collision">
+            <origin xyz="-0.009999999999999502 0.14741025839695648 0.23532204984489824" rpy="1.570796326794897 -1.0471975511965441 1.5707963267948941" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Aluminum_145extrusion3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Aluminum_145extrusion1">
+        <inertial>
+            <origin xyz="-0.010000000031341827 0.06633974170920136 0.13490381302308993" rpy="-2.1349174499181337e-32 -0.0 0.0" />
+            <mass value="0.3939583913021997" />
+            <inertia ixx="0.0029697595175503227" iyy="0.002234855429556751" izz="0.0007650472535646812" ixy="1.016036353587842e-17" iyz="-0.0012728912190990503" ixz="1.0989081503003175e-17" />
+        </inertial>
+        <visual name="Aluminum_145extrusion1_visual">
+            <origin xyz="-0.009999999999999787 0.0025897416820646856 0.02448557405625607" rpy="-1.5707963267948963 1.0471975511965577 -1.5707963267948988" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Aluminum_145extrusion1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Aluminum_145extrusion1_collision">
+            <origin xyz="-0.009999999999999787 0.0025897416820646856 0.02448557405625607" rpy="-1.5707963267948963 1.0471975511965577 -1.5707963267948988" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Aluminum_145extrusion1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="down_Frameconnector1">
+        <inertial>
+            <origin xyz="-0.013073707569242954 -0.0006340754942723186 0.014427975615689946" rpy="0.0 -0.0 0.0" />
+            <mass value="0.4620811029413756" />
+            <inertia ixx="0.00015490569193077341" iyy="0.0002964570489977919" izz="0.0004064862221273566" ixy="-1.913358204713443e-07" iyz="7.013373979860476e-08" ixz="1.072362587639826e-05" />
+        </inertial>
+        <visual name="down_Frameconnector1_visual">
+            <origin xyz="0.004513981998140028 -0.0008999999999998964 0.021549790984971368" rpy="-3.1415926535897927 -1.472357158141669e-15 -1.5707963267948928" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/down_Frameconnector1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="down_Frameconnector1_collision">
+            <origin xyz="0.004513981998140028 -0.0008999999999998964 0.021549790984971368" rpy="-3.1415926535897927 -1.472357158141669e-15 -1.5707963267948928" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/down_Frameconnector1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="upper_Frameconnector1">
+        <inertial>
+            <origin xyz="-0.0024284643418156903 -0.021289393789456237 0.0028813160806174663" rpy="0.0 -0.0 0.0" />
+            <mass value="0.11424892661793296" />
+            <inertia ixx="3.466512078227971e-05" iyy="3.375583675949145e-05" izz="6.681196089585199e-05" ixy="4.2682146223503557e-07" iyz="1.4034463742471353e-08" ixz="-1.7177260310235337e-06" />
+        </inertial>
+        <visual name="upper_Frameconnector1_visual">
+            <origin xyz="-0.055150261998140916 -0.021460250000000465 0.0029999999999997585" rpy="4.579674914917267e-16 -1.7816019305435603e-15 -1.5707963267948928" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/upper_Frameconnector1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="upper_Frameconnector1_collision">
+            <origin xyz="-0.055150261998140916 -0.021460250000000465 0.0029999999999997585" rpy="4.579674914917267e-16 -1.7816019305435603e-15 -1.5707963267948928" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/upper_Frameconnector1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="down_Frameconnector2">
+        <inertial>
+            <origin xyz="-0.004599840856933586 -0.034421505132274 0.00857202438430953" rpy="0.0 -0.0 0.0" />
+            <mass value="0.4620811029413756" />
+            <inertia ixx="0.0002612349114122641" iyy="0.00019012782951637042" izz="0.000406486222127359" ixy="6.11978676698715e-05" iyz="-9.32199929954899e-06" ixz="5.3010753378809885e-06" />
+        </inertial>
+        <visual name="down_Frameconnector2_visual">
+            <origin xyz="-0.013623983018074189 -0.019323081425909622 0.001450209015028392" rpy="-1.2708197891543417e-14 -3.008057323725575e-14 -2.617993877991493" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/down_Frameconnector2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="down_Frameconnector2_collision">
+            <origin xyz="-0.013623983018074189 -0.019323081425909622 0.001450209015028392" rpy="-1.2708197891543417e-14 -3.008057323725575e-14 -2.617993877991493" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/down_Frameconnector2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="upper_Frameconnector2">
+        <inertial>
+            <origin xyz="0.001118683919382164 0.03420806299930581 -5.267402937084498e-05" rpy="1.232595164407831e-32 -0.0 0.0" />
+            <mass value="0.11424892661793296" />
+            <inertia ixx="6.681196089585673e-05" iyy="3.4807438005771824e-05" izz="3.361351953602015e-05" ixy="-1.480577147735737e-06" iyz="1.803208003765129e-07" ixz="-8.710172176408863e-07" />
+        </inertial>
+        <visual name="upper_Frameconnector2_visual">
+            <origin xyz="0.0009999999999999432 0.07995190720813819 0.026160258980065923" rpy="-1.5707963267948968 1.0471975511965967 1.570796326794895" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/upper_Frameconnector2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="upper_Frameconnector2_collision">
+            <origin xyz="0.0009999999999999432 0.07995190720813819 0.026160258980065923" rpy="-1.5707963267948968 1.0471975511965967 1.570796326794895" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/upper_Frameconnector2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="down_Frameconnector3">
+        <inertial>
+            <origin xyz="0.032109824388161866 0.013227179638014182 0.008572024384311731" rpy="0.0 -0.0 0.0" />
+            <mass value="0.4620811029413756" />
+            <inertia ixx="0.00026090350804987283" iyy="0.00019045923287872024" izz="0.00040648622212735054" ixy="-6.138920349033506e-05" iyz="9.251865559740252e-06" ixz="5.422550538515536e-06" />
+        </inertial>
+        <visual name="down_Frameconnector3_visual">
+            <origin xyz="0.023546276981919797 -0.002137168574077837 0.001450209015029884" rpy="2.5332831441075655e-14 -4.603419095955699e-14 -0.5235987755982879" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/down_Frameconnector3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="down_Frameconnector3_collision">
+            <origin xyz="0.023546276981919797 -0.002137168574077837 0.001450209015029884" rpy="2.5332831441075655e-14 -4.603419095955699e-14 -0.5235987755982879" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/down_Frameconnector3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="upper_Frameconnector3">
+        <inertial>
+            <origin xyz="0.0011186839193827326 0.01705840920986109 -0.029651394333172335" rpy="-1.7516230804060217e-46 -0.0 0.0" />
+            <mass value="0.11424892661793296" />
+            <inertia ixx="6.681196089585069e-05" iyy="3.406816154740559e-05" izz="3.435279599436901e-05" ixy="-1.4946116114796652e-06" iyz="-6.071422626158748e-07" ixz="8.467088133809127e-07" />
+        </inertial>
+        <visual name="upper_Frameconnector3_visual">
+            <origin xyz="0.0010000000000002984 0.0626313972081498 -0.05616025898006022" rpy="1.5707963267948961 1.0471975511966087 -1.5707963267948981" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/upper_Frameconnector3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="upper_Frameconnector3_collision">
+            <origin xyz="0.0010000000000002984 0.0626313972081498 -0.05616025898006022" rpy="1.5707963267948961 1.0471975511966087 -1.5707963267948981" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/upper_Frameconnector3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_BallHead1">
+        <inertial>
+            <origin xyz="-0.0029533964626527534 2.628911701663128e-09 -0.001705147501917672" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="6.880896205796114e-07" iyy="1.9310452991610615e-06" izz="1.5167267397595344e-06" ixy="1.4358034348049252e-09" iyz="-2.4868845810777784e-09" ixz="-7.176207955098468e-07" />
+        </inertial>
+        <visual name="right_BallHead1_visual">
+            <origin xyz="-0.0112583279728789 2.62862720035173e-09 -0.006500001944167835" rpy="2.2555155297510394 -0.6590580358446122 -2.0344439357674666" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_BallHead1_collision">
+            <origin xyz="-0.0112583279728789 2.62862720035173e-09 -0.006500001944167835" rpy="2.2555155297510394 -0.6590580358446122 -2.0344439357674666" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_ballcap1">
+        <inertial>
+            <origin xyz="-0.001725451068822279 0.002479959756081733 -0.008271108607538977" rpy="-6.162975822039155e-33 -1.5407439555097887e-33 -1.2811976828547865e-34" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.871073690208493e-06" iyy="4.4395568141140946e-06" izz="1.6665567156536063e-06" ixy="2.1251348430659218e-07" iyz="1.0905882183304132e-06" ixz="-3.739609303202513e-07" />
+        </inertial>
+        <visual name="left_ballcap1_visual">
+            <origin xyz="2.0271191569776193e-09 -1.944164971234841e-09 -2.628624002909419e-09" rpy="1.5707963267949827 -1.2217304763960128 -1.047197551237463" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_ballcap1_collision">
+            <origin xyz="2.0271191569776193e-09 -1.944164971234841e-09 -2.628624002909419e-09" rpy="1.5707963267949827 -1.2217304763960128 -1.047197551237463" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_ballcap2">
+        <inertial>
+            <origin xyz="-0.0010854818884970285 0.00027149686085471637 -0.002137152378501206" rpy="-8.552847072295026e-50 1.540743955509789e-33 -3.943346516046534e-34" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.731478109243173e-06" iyy="4.579152395081685e-06" izz="1.6665567156535512e-06" ixy="2.931090305713609e-07" iyz="8.691537749071087e-07" ixz="-7.57496636911005e-07" />
+        </inertial>
+        <visual name="left_ballcap2_visual">
+            <origin xyz="-0.002370465173129208 0.0030057639252068303 -0.010408258357416322" rpy="-1.5707963267949419 1.221730476396013 2.094395102352424" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_ballcap2_collision">
+            <origin xyz="-0.002370465173129208 0.0030057639252068303 -0.010408258357416322" rpy="-1.5707963267949419 1.221730476396013 2.094395102352424" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_BallHead2">
+        <inertial>
+            <origin xyz="0.008304936337200584 0.0047948583672803215 1.642445930372105e-09" rpy="0.0 7.703719777548945e-34 2.4043524534806967e-34" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="6.886395651887771e-07" iyy="1.5183765736936088e-06" izz="1.9288455206205584e-06" ixy="-7.185733275428052e-07" iyz="1.5985385923756223e-09" ixz="-9.229166635300612e-10" />
+        </inertial>
+        <visual name="right_BallHead2_visual">
+            <origin xyz="4.826870751983847e-09 3.9252068173567525e-09 1.6425835269728851e-09" rpy="-1.570796326794913 -0.34906585039885235 2.0943951023409086" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_BallHead2_collision">
+            <origin xyz="4.826870751983847e-09 3.9252068173567525e-09 1.6425835269728851e-09" rpy="-1.570796326794913 -0.34906585039885235 2.0943951023409086" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_BallHead1">
+        <inertial>
+            <origin xyz="0.0029533971672012706 -2.6283407095206713e-09 -0.00170514361265802" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="6.88089620578744e-07" iyy="1.9310452991610615e-06" izz="1.5167267397621365e-06" ixy="-1.435803434696505e-09" iyz="-2.4868845806440976e-09" ixz="7.17620795508112e-07" />
+        </inertial>
+        <visual name="left_BallHead1_visual">
+            <origin xyz="0.011258328677436787 -2.628625281886343e-09 -0.006499998054891947" rpy="-2.255515529748826 -0.6590580358454909 -1.1071487178236834" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_BallHead1_collision">
+            <origin xyz="0.011258328677436787 -2.628625281886343e-09 -0.006499998054891947" rpy="-2.255515529748826 -0.6590580358454909 -1.1071487178236834" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_ballcap1">
+        <inertial>
+            <origin xyz="-0.0012849846072029614 0.002734265119244128 -0.008271108607536349" rpy="-3.0814879110195774e-33 3.0814879110195774e-33 -5.546564545816091e-34" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.731478109244042e-06" iyy="4.5791523950854795e-06" izz="1.6665567156531713e-06" ixy="2.9310903057163144e-07" iyz="8.691537749065668e-07" ixz="-7.574966369131193e-07" />
+        </inertial>
+        <visual name="right_ballcap1_visual">
+            <origin xyz="-1.3225654882376149e-09 -1.945105410072756e-09 -2.628621302847023e-09" rpy="-1.5707963267948104 -1.221730476396019 -1.047197551235425" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_ballcap1_collision">
+            <origin xyz="-1.3225654882376149e-09 -1.945105410072756e-09 -2.628621302847023e-09" rpy="-1.5707963267948104 -1.221730476396019 -1.047197551235425" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_BallHead2">
+        <inertial>
+            <origin xyz="-0.008304930033660663 -0.004794850517913454 1.6427198445967407e-09" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="6.886395651632985e-07" iyy="1.5183765737193044e-06" izz="1.928845520620964e-06" ixy="-7.185733275281085e-07" iyz="1.5985385924025164e-09" ixz="-9.22916663513019e-10" />
+        </inertial>
+        <visual name="left_BallHead2_visual">
+            <origin xyz="1.4767534581294762e-09 3.9240126881168185e-09 1.6425822479959606e-09" rpy="-1.5707963267948801 0.3490658503988692 -1.0471975512666118" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_BallHead2_collision">
+            <origin xyz="1.4767534581294762e-09 3.9240126881168185e-09 1.6425822479959606e-09" rpy="-1.5707963267948801 0.3490658503988692 -1.0471975512666118" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_ballcap2">
+        <inertial>
+            <origin xyz="0.00030761457270018664 0.0010758022237697107 -0.0021371523785025026" rpy="0.0 -0.0 3.3983765958681456e-34" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.871073690209467e-06" iyy="4.439556814114743e-06" izz="1.6665567156535847e-06" ixy="2.125134843077072e-07" iyz="1.0905882183294908e-06" ixz="-3.739609303224092e-07" />
+        </inertial>
+        <visual name="right_ballcap2_visual">
+            <origin xyz="-0.0014178385232465776 0.003555763924012756 -0.010408258357417672" rpy="1.570796326794851 1.2217304763960188 2.094395102354465" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_ballcap2_collision">
+            <origin xyz="-0.0014178385232465776 0.003555763924012756 -0.010408258357417672" rpy="1.570796326794851 1.2217304763960188 2.094395102354465" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Stepper_motorbracket2">
+        <inertial>
+            <origin xyz="0.041500004942219684 0.02532763628070456 0.014320855580455927" rpy="0.0 -0.0 0.0" />
+            <mass value="0.4022587253937827" />
+            <inertia ixx="0.00020997965956011388" iyy="0.00044308642204327064" izz="0.00039249624069749925" ixy="1.1275702593849246e-17" iyz="-5.098512148901148e-05" ixz="4.59829743726381e-12" />
+        </inertial>
+        <visual name="Stepper_motorbracket2_visual">
+            <origin xyz="0.04150000494222081 0.04149999999999692 0.03760000473612166" rpy="4.981030050085588e-14 7.477676220757038e-16 -1.5707963267948912" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Stepper_motorbracket2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Stepper_motorbracket2_collision">
+            <origin xyz="0.04150000494222081 0.04149999999999692 0.03760000473612166" rpy="4.981030050085588e-14 7.477676220757038e-16 -1.5707963267948912" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Stepper_motorbracket2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Stepper_motorbracket3">
+        <inertial>
+            <origin xyz="-0.018868677228336878 0.0370262378217941 0.014320855580454293" rpy="0.0 -0.0 2.5876656351231204e-92" />
+            <mass value="0.4022587253937827" />
+            <inertia ixx="0.0003848097314224849" iyy="0.00026825635018090654" izz="0.0003924962406974962" ixy="0.00010093818905216939" iyz="2.549256472676037e-05" ixz="4.415440812536404e-05" />
+        </inertial>
+        <visual name="Stepper_motorbracket3_visual">
+            <origin xyz="-0.032874355048486396 0.028940055962149762 0.037600004736120275" rpy="1.2038304069772271e-14 1.501560399625731e-14 0.5235987755983224" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Stepper_motorbracket3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Stepper_motorbracket3_collision">
+            <origin xyz="-0.032874355048486396 0.028940055962149762 0.037600004736120275" rpy="1.2038304069772271e-14 1.501560399625731e-14 0.5235987755983224" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Stepper_motorbracket3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_BallHead5">
+        <inertial>
+            <origin xyz="-0.0029534018666439545 -2.628908220003723e-09 -0.0017051475015498242" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="6.880896207131851e-07" iyy="1.9310452991610615e-06" izz="1.5167267396328996e-06" ixy="1.4358035060370443e-09" iyz="-2.4868845394446313e-09" ixz="-7.176207955848737e-07" />
+        </inertial>
+        <visual name="left_BallHead5_visual">
+            <origin xyz="-0.01125833337638932 -2.6286235765837774e-09 -0.0065000019446315" rpy="-2.2555155297971363 0.6590580358264064 1.1071487177941022" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_BallHead5_collision">
+            <origin xyz="-0.01125833337638932 -2.6286235765837774e-09 -0.0065000019446315" rpy="-2.2555155297971363 0.6590580358264064 1.1071487177941022" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_BallHead6">
+        <inertial>
+            <origin xyz="0.008304930924712847 -0.004794858362195775 1.6424447579765912e-09" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="6.886395652633706e-07" iyy="1.51837657361804e-06" izz="1.9288455206213444e-06" ixy="7.185733275858484e-07" iyz="-1.5985385924839788e-09" ixz="-9.229166634758653e-10" />
+        </inertial>
+        <visual name="left_BallHead6_visual">
+            <origin xyz="-5.853646545261881e-10 -3.919688085218809e-09 1.6425822479959606e-09" rpy="1.5707963267949234 -0.34906585039894944 -2.0943951023931766" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_BallHead6_collision">
+            <origin xyz="-5.853646545261881e-10 -3.919688085218809e-09 1.6425822479959606e-09" rpy="1.5707963267949234 -0.34906585039894944 -2.0943951023931766" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_ballcap5">
+        <inertial>
+            <origin xyz="-0.0017254564724318922 -0.0024799597555444563 -0.008271108607538623" rpy="0.0 -0.0 0.0" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.871073690192879e-06" iyy="4.43955681413144e-06" izz="1.6665567156536054e-06" ixy="-2.1251348432404789e-07" iyz="-1.0905882183148005e-06" ixz="-3.7396093036426957e-07" />
+        </inertial>
+        <visual name="right_ballcap5_visual">
+            <origin xyz="-3.3763893192428895e-09 1.9446315491222776e-09 -2.628623647638051e-09" rpy="-1.5707963267949563 -1.2217304763960413 1.0471975511966278" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_ballcap5_collision">
+            <origin xyz="-3.3763893192428895e-09 1.9446315491222776e-09 -2.628623647638051e-09" rpy="-1.5707963267949563 -1.2217304763960413 1.0471975511966278" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_ballcap6">
+        <inertial>
+            <origin xyz="-0.0010854773006212426 -0.0002714968553886088 -0.002137152378503018" rpy="0.0 -0.0 3.984007994488808e-34" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.7314781092184545e-06" iyy="4.5791523951054305e-06" izz="1.6665567156530633e-06" ixy="-2.9310903057708004e-07" iyz="-8.691537748761549e-07" ixz="-7.574966369461874e-07" />
+        </inertial>
+        <visual name="right_ballcap6_visual">
+            <origin xyz="-0.00237046058536464 -0.003005763919688036 -0.010408258357417743" rpy="1.570796326794971 1.2217304763960415 -2.0943951023931655" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_ballcap6_collision">
+            <origin xyz="-0.00237046058536464 -0.003005763919688036 -0.010408258357417743" rpy="1.570796326794971 1.2217304763960415 -2.0943951023931655" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_BallHead5">
+        <inertial>
+            <origin xyz="0.002953401763351522 2.628907154189619e-09 -0.0017051436127801267" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="6.880896206403267e-07" iyy="1.9310452991608447e-06" izz="1.5167267397005538e-06" ixy="-1.4358034351302223e-09" iyz="-2.4868845819453565e-09" ixz="7.176207955437824e-07" />
+        </inertial>
+        <visual name="right_BallHead5_visual">
+            <origin xyz="0.011258333273381514 2.6286222265525794e-09 -0.006499998055368402" rpy="-2.2555155297971035 -0.6590580358264176 -1.1071487177941188" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_BallHead5_collision">
+            <origin xyz="0.011258333273381514 2.6286222265525794e-09 -0.006499998055368402" rpy="-2.2555155297971035 -0.6590580358264176 -1.1071487177941188" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_BallHead6">
+        <inertial>
+            <origin xyz="-0.008304935445291955 0.004794850523473669 1.6424550253191228e-09" rpy="0.0 -0.0 1.1977214050707445e-33" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="6.886395653582381e-07" iyy="1.5183765735234979e-06" izz="1.928845520621296e-06" ixy="7.185733276405479e-07" iyz="-1.598538572561891e-09" ixz="-9.229166979398329e-10" />
+        </inertial>
+        <visual name="right_BallHead6_visual">
+            <origin xyz="-3.935592740728078e-09 -3.919689510745172e-09 1.642592906136997e-09" rpy="-1.5707963267948806 -0.34906585039893206 -2.094395102393173" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_BallHead6_collision">
+            <origin xyz="-3.935592740728078e-09 -3.919689510745172e-09 1.642592906136997e-09" rpy="-1.5707963267948806 -0.34906585039893206 -2.094395102393173" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_ballcap5">
+        <inertial>
+            <origin xyz="-0.0012849800113620446 -0.0027342651196680732 -0.0082711086075372" rpy="0.0 -0.0 0.0" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.7314781092197555e-06" iyy="4.579152395108033e-06" izz="1.6665567156531717e-06" ixy="-2.9310903057705336e-07" iyz="-8.691537748762091e-07" ixz="-7.574966369465129e-07" />
+        </inertial>
+        <visual name="left_ballcap5_visual">
+            <origin xyz="3.2733813704055594e-09 1.944631371486594e-09 -2.628622297606853e-09" rpy="1.5707963267948324 -1.2217304763960424 1.0471975511966263" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_ballcap5_collision">
+            <origin xyz="3.2733813704055594e-09 1.944631371486594e-09 -2.628622297606853e-09" rpy="1.5707963267948324 -1.2217304763960424 1.0471975511966263" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_ballcap6">
+        <inertial>
+            <origin xyz="0.00030761916044987845 -0.001075802219513573 -0.002137152378492342" rpy="0.0 -0.0 2.3592887871251235e-33" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.871073690192553e-06" iyy="4.439556814131332e-06" izz="1.6665567156532124e-06" ixy="-2.1251348432415075e-07" iyz="-1.0905882183149089e-06" ixz="-3.7396093036456264e-07" />
+        </inertial>
+        <visual name="left_ballcap6_visual">
+            <origin xyz="-0.00141783393559275 -0.0035557639196895164 -0.010408258357407085" rpy="-1.5707963267948526 1.221730476396038 -2.094395102393192" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_ballcap6_collision">
+            <origin xyz="-0.00141783393559275 -0.0035557639196895164 -0.010408258357407085" rpy="-1.5707963267948526 1.221730476396038 -2.094395102393192" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Endstop_Holder1">
+        <inertial>
+            <origin xyz="-0.002723041569584166 -0.007795891809061928 -0.004716466117171851" rpy="0.0 1.6348482083789705e-45 0.0" />
+            <mass value="0.034078209138864" />
+            <inertia ixx="2.5217616338767547e-06" iyy="5.134547277751663e-06" izz="4.595467077939293e-06" ixy="1.1783097703696219e-07" iyz="2.0409304200027734e-07" ixz="1.7958852677587042e-06" />
+        </inertial>
+        <visual name="Endstop_Holder1_visual">
+            <origin xyz="-0.01558845277799941 -0.018999999999999347 0.009000001924314454" rpy="-3.1415926535897913 1.0471975511966272 3.14159265358979" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_Holder1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Endstop_Holder1_collision">
+            <origin xyz="-0.01558845277799941 -0.018999999999999347 0.009000001924314454" rpy="-3.1415926535897913 1.0471975511966272 3.14159265358979" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_Holder1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Endstop_LimitSwitch1">
+        <inertial>
+            <origin xyz="0.011360810272317865 0.0013991352803397205 -0.004248866376428131" rpy="0.0 -5.551115123125784e-17 -1.2325951644078312e-32" />
+            <mass value="0.009960458502476378" />
+            <inertia ixx="1.3923734199931646e-07" iyy="4.0099546322787665e-07" izz="4.1101964822057276e-07" ixy="-1.7020264414538417e-10" iyz="3.340542938742977e-08" ixz="-4.261721164282602e-08" />
+        </inertial>
+        <visual name="Endstop_LimitSwitch1_visual">
+            <origin xyz="0.01619950680613494 0.0036321357492045793 -0.005330442110571889" rpy="1.7952268647568135 0.8952123414008532 -1.394511950753619" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_LimitSwitch1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Endstop_LimitSwitch1_collision">
+            <origin xyz="0.01619950680613494 0.0036321357492045793 -0.005330442110571889" rpy="1.7952268647568135 0.8952123414008532 -1.394511950753619" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_LimitSwitch1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Endstop_Holder2">
+        <inertial>
+            <origin xyz="0.005446099227698688 -0.007795891809062426 6.957368488685889e-09" rpy="0.0 1.656743496884046e-45 1.97215226305253e-31" />
+            <mass value="0.034078209138864" />
+            <inertia ixx="5.632322981083923e-06" iyy="5.134547277751717e-06" izz="1.484905730732115e-06" ixy="-2.3566524762642275e-07" iyz="-1.9015332894162133e-12" ixz="-1.8366174935659e-12" />
+        </inertial>
+        <visual name="Endstop_Holder2_visual">
+            <origin xyz="-4.942218723158476e-09 -0.018999999999999843 -0.017999999999995124" rpy="2.525959990534309e-15 6.035494173128474e-15 -2.6728624662946417e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_Holder2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Endstop_Holder2_collision">
+            <origin xyz="-4.942218723158476e-09 -0.018999999999999843 -0.017999999999995124" rpy="2.525959990534309e-15 6.035494173128474e-15 -2.6728624662946417e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_Holder2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Endstop_LimitSwitch2">
+        <inertial>
+            <origin xyz="-0.0020007760806894305 0.001399135280339223 0.011963185502592993" rpy="0.0 2.3861691517130835e-62 -4.3790577010150533e-47" />
+            <mass value="0.009960458502476378" />
+            <inertia ixx="3.061664837443496e-07" iyy="4.0099546322770036e-07" izz="2.4409050647597417e-07" ixy="-2.8844849151730957e-08" iyz="-1.68501145072369e-08" ixz="1.389937965647838e-07" />
+        </inertial>
+        <visual name="Endstop_LimitSwitch2_visual">
+            <origin xyz="-0.003483452285712527 0.003632135749204153 0.01669440748915422" rpy="-2.6932541922199422 -0.5065322559345511 -0.7811127485983864" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_LimitSwitch2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Endstop_LimitSwitch2_collision">
+            <origin xyz="-0.003483452285712527 0.003632135749204153 0.01669440748915422" rpy="-2.6932541922199422 -0.5065322559345511 -0.7811127485983864" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_LimitSwitch2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Endstop_Holder3">
+        <inertial>
+            <origin xyz="0.0061871552352348105 -0.007795891809062709 -0.0027164591598149634" rpy="0.0 1.6815581571897975e-45 0.0" />
+            <mass value="0.034078209138864" />
+            <inertia ixx="2.5217584527607777e-06" iyy="5.134547277751878e-06" izz="4.595470259052652e-06" ixy="-1.1783427058928518e-07" iyz="2.0409114046665925e-07" ixz="-1.7958834311414994e-06" />
+        </inertial>
+        <visual name="Endstop_Holder3_visual">
+            <origin xyz="-0.01212436014309732 -0.0190000000000002 -0.006999998075692186" rpy="-4.725863772349628e-15 1.0471975511965774 -1.4232468243759357e-15" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_Holder3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Endstop_Holder3_collision">
+            <origin xyz="-0.01212436014309732 -0.0190000000000002 -0.006999998075692186" rpy="-4.725863772349628e-15 1.0471975511965774 -1.4232468243759357e-15" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_Holder3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Endstop_LimitSwitch3">
+        <inertial>
+            <origin xyz="-0.009360028220769579 0.001399135280338868 -0.007714314461232546" rpy="0.0 -5.551115123125783e-17 0.0" />
+            <mass value="0.009960458502476378" />
+            <inertia ixx="3.7998165958585693e-07" iyy="4.0099546322790375e-07" izz="1.7027533063294798e-07" ixy="2.901505179584913e-08" iyz="-1.655531488016628e-08" ixz="-9.637658492195922e-08" />
+        </inertial>
+        <visual name="Endstop_LimitSwitch3_visual">
+            <origin xyz="-0.012716048549563387 0.0036321357492037267 -0.01136396071364997" rpy="-0.24379561483914775 -0.2996585857818394 -2.4413848384801864" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_LimitSwitch3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Endstop_LimitSwitch3_collision">
+            <origin xyz="-0.012716048549563387 0.0036321357492037267 -0.01136396071364997" rpy="-0.24379561483914775 -0.2996585857818394 -2.4413848384801864" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Endstop_LimitSwitch3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_3030190">
+        <inertial>
+            <origin xyz="-1.7619215905746445e-05 2.2344680637456093e-05 0.09500000610132191" rpy="0.0 -0.0 1.9913648889155651e-59" />
+            <mass value="0.5835776358763747" />
+            <inertia ixx="0.001803787178568217" iyy="0.001803737320510368" izz="0.00010405962411120032" ixy="1.0453205040460454e-07" iyz="-4.524297256280896e-10" ixz="-2.599120085822193e-10" />
+        </inertial>
+        <visual name="left_3030190_visual">
+            <origin xyz="-4.8824300158401e-09 4.508518980372856e-09 0.2100000000000007" rpy="-3.1415926535897456 -8.490438732103797e-14 -0.523598775598288" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_3030190.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_3030190_collision">
+            <origin xyz="-4.8824300158401e-09 4.508518980372856e-09 0.2100000000000007" rpy="-3.1415926535897456 -8.490438732103797e-14 -0.523598775598288" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_3030190.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_3030190">
+        <inertial>
+            <origin xyz="-2.8149653295823642e-05 -4.084847931036251e-06 0.09500000610132112" rpy="0.0 -0.0 0.0" />
+            <mass value="0.5835776358763747" />
+            <inertia ixx="0.0018036592576136925" iyy="0.0018038652414648628" izz="0.00010405962411120376" ixy="-3.06768528426926e-08" iyz="-4.5130544440441496e-10" ixz="2.6185942997303247e-10" />
+        </inertial>
+        <visual name="right_3030190_visual">
+            <origin xyz="4.670034012832503e-09 -4.737176695357448e-10 0.20999999999999994" rpy="-3.1415926535897807 6.216601864900008e-14 0.5235987755982994" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_3030190.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_3030190_collision">
+            <origin xyz="4.670034012832503e-09 -4.737176695357448e-10 0.20999999999999994" rpy="-3.1415926535897807 6.216601864900008e-14 0.5235987755982994" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_3030190.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_movewheel">
+        <inertial>
+            <origin xyz="6.022012260586962e-07 0.07784336592593995 5.451452816629399e-07" rpy="0.0 -0.0 0.0" />
+            <mass value="38.53412412571526" />
+            <inertia ixx="0.26664139253751884" iyy="0.5045976624101429" izz="0.26664395146274333" ixy="-8.257130978961412e-08" iyz="-9.93838247254075e-08" ixz="3.2832899510282227e-07" />
+        </inertial>
+        <visual name="right_movewheel_visual">
+            <origin xyz="0.02096031687379437 0.08904545325000364 0.025951571963941406" rpy="-3.141592653589793 1.5707963267947793 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_movewheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_movewheel_collision">
+            <origin xyz="0.02096031687379437 0.08904545325000364 0.025951571963941406" rpy="-3.141592653589793 1.5707963267947793 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_movewheel.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="stepper_motor2">
+        <inertial>
+            <origin xyz="0.02217207637943874 -0.067582925638803 0.023250790444869232" rpy="0.0 -0.0 0.0" />
+            <mass value="0.37445102170993205" />
+            <inertia ixx="0.0006582843393010546" iyy="0.00016584041075325823" izz="0.0006705132146513151" ixy="-7.35144648521778e-06" iyz="-3.8830055004712705e-09" ixz="6.113271160124167e-09" />
+        </inertial>
+        <visual name="stepper_motor2_visual">
+            <origin xyz="0.023249997731132482 -0.10500000000000373 0.0232500019472068" rpy="1.5707963267949077 1.5707963267948448 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/stepper_motor2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="stepper_motor2_collision">
+            <origin xyz="0.023249997731132482 -0.10500000000000373 0.0232500019472068" rpy="1.5707963267949077 1.5707963267948448 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/stepper_motor2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="part_reducer2">
+        <inertial>
+            <origin xyz="-0.02499515567714109 -0.045421881851256805 -0.02499040986959903" rpy="0.0 -0.0 0.0" />
+            <mass value="0.2728951301030982" />
+            <inertia ixx="0.0002714837870023542" iyy="0.00013660840957666065" izz="0.00027153298312891996" ixy="5.0993986133555935e-08" iyz="1.066812922501971e-07" ixz="1.0610964978202686e-08" />
+        </inertial>
+        <visual name="part_reducer2_visual">
+            <origin xyz="0.004999998052794439 -0.09500000000000318 -0.05500000226886444" rpy="-1.5707963267948974 1.5707963267948426 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/part_reducer2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="part_reducer2_collision">
+            <origin xyz="0.004999998052794439 -0.09500000000000318 -0.05500000226886444" rpy="-1.5707963267948974 1.5707963267948426 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/part_reducer2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Delta_upperarm2">
+        <inertial>
+            <origin xyz="-0.10707666567919935 0.009000003672638578 0.10707621608007653" rpy="0.0 -0.0 0.0" />
+            <mass value="0.2293180429251482" />
+            <inertia ixx="0.0012199470811985746" iyy="0.0024231630698775958" izz="0.0012199284116728541" ixy="-1.0434402051163333e-10" iyz="9.208736147215367e-11" ixz="0.0011827159064430708" />
+        </inertial>
+        <visual name="Delta_upperarm2_visual">
+            <origin xyz="-0.21213203880439352 0.00899999999999932 0.21213203458834382" rpy="-3.1415926535897922 0.7853981633974996 1.6916678705704938e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Delta_upperarm2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Delta_upperarm2_collision">
+            <origin xyz="-0.21213203880439352 0.00899999999999932 0.21213203458834382" rpy="-3.1415926535897922 0.7853981633974996 1.6916678705704938e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Delta_upperarm2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Bracket_fixed2">
+        <inertial>
+            <origin xyz="-0.003500004736119706 0.10859110349987053 4.942228564175366e-09" rpy="-1.7516230804060217e-46 -0.0 0.0" />
+            <mass value="0.09091819877724068" />
+            <inertia ixx="9.098404536707306e-05" iyy="7.285455910580223e-05" izz="1.8871984884611524e-05" ixy="-1.796003545178765e-36" iyz="1.951563910473907e-18" ixz="-8.6736173798840345e-19" />
+        </inertial>
+        <visual name="Bracket_fixed2_visual">
+            <origin xyz="-0.0070000047361197205 0.10849999999999149 4.942233857718747e-09" rpy="1.0998396244215204e-15 1.570796326794896 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Bracket_fixed2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Bracket_fixed2_collision">
+            <origin xyz="-0.0070000047361197205 0.10849999999999149 4.942233857718747e-09" rpy="1.0998396244215204e-15 1.570796326794896 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Bracket_fixed2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Delta_upperarm">
+        <inertial>
+            <origin xyz="0.04574388427873885 -0.09723072246478229 0.10707666424617894" rpy="0.0 -0.0 0.0" />
+            <mass value="0.2293180429251482" />
+            <inertia ixx="0.0021223544850764026" iyy="0.0015207369964740716" izz="0.0012199470811984567" ixy="0.0005210158443158094" iyz="0.0010242620726116612" ixz="-0.000591357862856935" />
+        </inertial>
+        <visual name="Delta_upperarm_visual">
+            <origin xyz="0.09827179035226889 -0.18821173194462476 0.21213203737137815" rpy="-5.638098969019233e-14 0.785398163397449 2.0943951023931593" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Delta_upperarm.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Delta_upperarm_collision">
+            <origin xyz="0.09827179035226889 -0.18821173194462476 0.21213203737137815" rpy="-5.638098969019233e-14 0.785398163397449 2.0943951023931593" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Delta_upperarm.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_lowerlink1">
+        <inertial>
+            <origin xyz="-0.32889242049302314 0.10366934598947194 0.059853528894991403" rpy="1.0691058840368783e-50 -1.5407439555097887e-33 0.0" />
+            <mass value="0.06896836527196099" />
+            <inertia ixx="0.0003301663266749793" iyy="0.002569556065301278" izz="0.0027342502039755454" ixy="0.0007837416057820171" iyz="-0.00014262930792076028" ixz="0.0004524934270328238" />
+        </inertial>
+        <visual name="right_lowerlink1_visual">
+            <origin xyz="-0.6577848377680897 0.20733869244590503 0.11970705397296497" rpy="1.919862177193751 1.047197551235344 1.5707963267948697" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_lowerlink1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_lowerlink1_collision">
+            <origin xyz="-0.6577848377680897 0.20733869244590503 0.11970705397296497" rpy="1.919862177193751 1.047197551235344 1.5707963267948697" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_lowerlink1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_lowerlink1">
+        <inertial>
+            <origin xyz="-0.3288924204930227 0.10366934599050112 0.059853527600905725" rpy="1.7105694144590052e-49 -0.0 0.0" />
+            <mass value="0.06896836527196099" />
+            <inertia ixx="0.0003301663266749728" iyy="0.0025695560653005815" izz="0.0027342502039760285" ixy="0.0007837416057829078" iyz="-0.00014262930792041746" ixz="0.00045249342703122255" />
+        </inertial>
+        <visual name="left_lowerlink1_visual">
+            <origin xyz="-0.6577848377680883 0.20733869244705727 0.11970705267866943" rpy="1.9198621771937567 1.0471975512373752 1.5707963267948692" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_lowerlink1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_lowerlink1_collision">
+            <origin xyz="-0.6577848377680883 0.20733869244705727 0.11970705267866943" rpy="1.9198621771937567 1.0471975512373752 1.5707963267948692" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_lowerlink1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Bracket_fixed3">
+        <inertial>
+            <origin xyz="-0.0035000047361201324 0.05420445228791765 0.09388486228779538" rpy="1.232595164407831e-32 -0.0 0.0" />
+            <mass value="0.09091819877724068" />
+            <inertia ixx="9.098404536707255e-05" iyy="3.2367628439909646e-05" izz="5.9358915550509345e-05" ixy="4.3368086899420173e-19" iyz="2.337514031861641e-05" ixz="2.168404344971009e-19" />
+        </inertial>
+        <visual name="Bracket_fixed3_visual">
+            <origin xyz="-0.007000004736120147 0.05425000403786174 0.09396376023306165" rpy="-1.5707963267948948 -0.5235987755983184 -1.5707963267948983" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Bracket_fixed3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Bracket_fixed3_collision">
+            <origin xyz="-0.007000004736120147 0.05425000403786174 0.09396376023306165" rpy="-1.5707963267948948 -0.5235987755983184 -1.5707963267948983" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Bracket_fixed3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="part_reducer3">
+        <inertial>
+            <origin xyz="-0.025009591563429155 0.04436577857029127 0.02683408059604591" rpy="4.978412222288914e-60 -0.0 0.0" />
+            <mass value="0.2728951301030982" />
+            <inertia ixx="0.0002715329831289218" iyy="0.00023772078055851048" izz="0.0001703714160205226" ixy="4.415128089345355e-08" iyz="-5.8428248590908624e-05" ixz="9.769419168602354e-08" />
+        </inertial>
+        <visual name="part_reducer3_visual">
+            <origin xyz="0.0050000008358375685 0.0951314027652075 0.054772413519718094" rpy="2.617993877991471 1.689110747310417e-14 -7.749516529921801e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/part_reducer3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="part_reducer3_collision">
+            <origin xyz="0.0050000008358375685 0.0951314027652075 0.054772413519718094" rpy="2.617993877991471 1.689110747310417e-14 -7.749516529921801e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/part_reducer3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="stepper_motor3">
+        <inertial>
+            <origin xyz="0.04744249466084158 0.052993049846281316 0.02325078766182557" rpy="0.0 -0.0 0.0" />
+            <mass value="0.37445102170993205" />
+            <inertia ixx="0.00028258485347947004" iyy="0.0005415398965748774" izz="0.0006705132146513377" ixy="-0.0002095587527883052" iyz="7.235750872679835e-09" ixz="3.0614582051166954e-10" />
+        </inertial>
+        <visual name="stepper_motor3_visual">
+            <origin xyz="0.07930767091708515 0.0726350943007313 0.023249999164163492" rpy="-0.5235987755983225 1.5707963267948843 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/stepper_motor3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="stepper_motor3_collision">
+            <origin xyz="0.07930767091708515 0.0726350943007313 0.023249999164163492" rpy="-0.5235987755983225 1.5707963267948843 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/stepper_motor3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Delta_upperarm3">
+        <inertial>
+            <origin xyz="0.061332332513767636 0.08823072613742934 0.10707666424617723" rpy="0.0 -0.0 0.0" />
+            <mass value="0.2293180429251482" />
+            <inertia ixx="0.002122354325576392" iyy="0.0015207371559741167" izz="0.0012199470811984263" ixy="-0.000521015936403171" iyz="-0.0010242619682676347" ixz="-0.0005913580435861028" />
+        </inertial>
+        <visual name="Delta_upperarm3_visual">
+            <origin xyz="0.11386024494849618 0.17921173194463147 0.21213203737137729" rpy="2.1295973830992424e-14 0.7853981633974559 -2.0943951023932037" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Delta_upperarm3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Delta_upperarm3_collision">
+            <origin xyz="0.11386024494849618 0.17921173194463147 0.21213203737137729" rpy="2.1295973830992424e-14 0.7853981633974559 -2.0943951023932037" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Delta_upperarm3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_lowerlink3">
+        <inertial>
+            <origin xyz="-0.32889242049302087 -0.1036693459875283 0.05985352300879564" rpy="7.109862831545497e-35 -1.5407439555097887e-33 0.0" />
+            <mass value="0.06896836527196099" />
+            <inertia ixx="0.00033016632667491694" iyy="0.0025695560653122814" izz="0.0027342502039644006" ixy="-0.0007837416057644009" iyz="0.00014262930792710452" ixz="0.0004524934270631553" />
+        </inertial>
+        <visual name="right_lowerlink3_visual">
+            <origin xyz="-0.6577848377680902 -0.2073386924416355 0.11970704809078285" rpy="-1.9198621771937292 1.0471975511965916 -1.5707963267948701" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_lowerlink3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_lowerlink3_collision">
+            <origin xyz="-0.6577848377680902 -0.2073386924416355 0.11970704809078285" rpy="-1.9198621771937292 1.0471975511965916 -1.5707963267948701" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_lowerlink3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_lowerlink3">
+        <inertial>
+            <origin xyz="-0.32889242049301376 -0.10366934598752948 0.05985352430318712" rpy="2.587547532115455e-35 -0.0 0.0" />
+            <mass value="0.06896836527196099" />
+            <inertia ixx="0.0003301663266748905" iyy="0.002569556065312467" izz="0.0027342502039645997" ixy="-0.0007837416057644084" iyz="0.0001426293079270685" ixz="0.0004524934270631465" />
+        </inertial>
+        <visual name="left_lowerlink3_visual">
+            <origin xyz="-0.6577848377680793 -0.20733869244163697 0.11970704938517358" rpy="-1.9198621771937279 1.0471975511966 -1.570796326794869" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_lowerlink3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_lowerlink3_collision">
+            <origin xyz="-0.6577848377680793 -0.20733869244163697 0.11970704938517358" rpy="-1.9198621771937279 1.0471975511966 -1.570796326794869" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_lowerlink3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Bracket_fixed1">
+        <inertial>
+            <origin xyz="-0.0035000047361198484 -0.05429554771210402 0.09404265919808623" rpy="0.0 -0.0 0.0" />
+            <mass value="0.09091819877724068" />
+            <inertia ixx="9.098404536707371e-05" iyy="3.2367628439909646e-05" izz="5.935891555050761e-05" ixy="-4.336808689942018e-19" iyz="-2.3375140318617303e-05" ixz="4.3368086899420173e-19" />
+        </inertial>
+        <visual name="Bracket_fixed1_visual">
+            <origin xyz="-0.007000004736119863 -0.05424999596216908 0.09396376125281468" rpy="1.5707963267948952 -0.5235987755982704 1.570796326794897" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Bracket_fixed1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Bracket_fixed1_collision">
+            <origin xyz="-0.007000004736119863 -0.05424999596216908 0.09396376125281468" rpy="1.5707963267948952 -0.5235987755982704 1.570796326794897" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Bracket_fixed1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="stepper_motor1">
+        <inertial>
+            <origin xyz="-0.06961457454391959 0.014589875792505041 0.02325078766183136" rpy="0.0 -0.0 0.0" />
+            <mass value="0.37445102170993205" />
+            <inertia ixx="0.000295317932300955" iyy="0.0005288068177533717" izz="0.0006705132146513394" ixy="0.0002169101992735116" iyz="-3.352745386883222e-09" ixz="-6.419416966734375e-09" />
+        </inertial>
+        <visual name="stepper_motor1_visual">
+            <origin xyz="-0.10255767215185842 0.032364905699255576 0.023249999164170383" rpy="-2.617993877991522 1.5707963267948568 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/stepper_motor1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="stepper_motor1_collision">
+            <origin xyz="-0.10255767215185842 0.032364905699255576 0.023249999164170383" rpy="-2.617993877991522 1.5707963267948568 0" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/stepper_motor1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="part_reducer1">
+        <inertial>
+            <origin xyz="-0.024990406764898127 0.0010644972669307507 -0.05183408183081615" rpy="4.605031305617245e-59 -0.0 0.0" />
+            <mass value="0.2728951301030982" />
+            <inertia ixx="0.0002715329831289217" iyy="0.0002377207805585209" izz="0.0001703714160205122" ixy="-4.415128089345355e-08" iyz="5.8428248590904945e-05" ixz="9.769419168342147e-08" />
+        </inertial>
+        <visual name="part_reducer1_visual">
+            <origin xyz="-0.05499999916416624 0.05183012146184496 -0.07977241475449043" rpy="-0.5235987755982705 -3.433258974012734e-14 -3.141592653589773" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/part_reducer1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="part_reducer1_collision">
+            <origin xyz="-0.05499999916416624 0.05183012146184496 -0.07977241475449043" rpy="-0.5235987755982705 -3.433258974012734e-14 -3.141592653589773" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/part_reducer1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="Stepper_motorbracket1">
+        <inertial>
+            <origin xyz="-0.022631319578388407 -0.03485387410251427 0.01432085558045408" rpy="0.0 -0.0 9.723461371658034e-63" />
+            <mass value="0.4022587253937827" />
+            <inertia ixx="0.0003848097314224641" iyy="0.0002682563501808996" izz="0.00039249624069751226" ixy="-0.00010093818905217264" iyz="2.549255676225458e-05" ixz="-4.415441272367839e-05" />
+        </inertial>
+        <visual name="Stepper_motorbracket1_visual">
+            <origin xyz="-0.008625641758239688 -0.04294005596216257 0.03760000473611939" rpy="-2.600246058942071e-16 -3.9793985133087305e-14 2.617993877991523" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Stepper_motorbracket1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="Stepper_motorbracket1_collision">
+            <origin xyz="-0.008625641758239688 -0.04294005596216257 0.03760000473611939" rpy="-2.600246058942071e-16 -3.9793985133087305e-14 2.617993877991523" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/Stepper_motorbracket1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_ballcap3">
+        <inertial>
+            <origin xyz="0.0030104375763925616 -0.00025430536412438974 -0.008271101390571474" rpy="0.0 -0.0 0.0" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.363393957073844e-06" iyy="4.94723654724874e-06" izz="1.666556715652738e-06" ixy="-8.059554625300478e-08" iyz="2.2143444343880776e-07" ixz="1.1314575673109992e-06" />
+        </inertial>
+        <visual name="right_ballcap3_visual">
+            <origin xyz="1.1956066714446933e-09 -8.393286066166184e-16 4.588343784917015e-09" rpy="-1.5707963267948672 -1.2217304763960823 3.141592653589766" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_ballcap3_collision">
+            <origin xyz="1.1956066714446933e-09 -8.393286066166184e-16 4.588343784917015e-09" rpy="-1.5707963267948672 -1.2217304763960823 3.141592653589766" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_ballcap4">
+        <inertial>
+            <origin xyz="0.0007778592327573896 -0.0008043053641310172 -0.0021371551615482253" rpy="0.0 -0.0 -1.215432671457254e-63" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.363393957075579e-06" iyy="4.9472365472491754e-06" izz="1.6665567156532802e-06" ixy="8.059554625303191e-08" iyz="-2.2143444343888913e-07" ixz="1.131457567310891e-06" />
+        </inertial>
+        <visual name="right_ballcap4_visual">
+            <origin xyz="0.0037882956135433157 -0.0005500000000076311 -0.01040826114046352" rpy="1.5707963267948672 1.2217304763960823 -2.734221523345236e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_ballcap4_collision">
+            <origin xyz="0.0037882956135433157 -0.0005500000000076311 -0.01040826114046352" rpy="1.5707963267948672 1.2217304763960823 -2.734221523345236e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_ballcap4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_lowerlink2">
+        <inertial>
+            <origin xyz="-0.3288924132760599 -4.272138198757603e-15 -0.11970704840457487" rpy="0.0 -0.0 0.0" />
+            <mass value="0.06896836527196099" />
+            <inertia ixx="0.0003301663266748457" iyy="0.00281659727329043" izz="0.0024872089959863506" ixy="-2.450296909817239e-17" iyz="-8.998878031629684e-18" ixz="-0.0009049868541262789" />
+        </inertial>
+        <visual name="right_lowerlink2_visual">
+            <origin xyz="-0.6577848305511355 -7.545075675352565e-15 -0.23941409856854237" rpy="4.517608140838153e-16 1.2217304763960823 1.0416103203976387e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_lowerlink2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_lowerlink2_collision">
+            <origin xyz="-0.6577848305511355 -7.545075675352565e-15 -0.23941409856854237" rpy="4.517608140838153e-16 1.2217304763960823 1.0416103203976387e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_lowerlink2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_BallHead3">
+        <inertial>
+            <origin xyz="1.1953218859162007e-09 -4.588628854662602e-09 -0.003410291114330033" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="1.9310452991621457e-06" iyy="1.9310452991608447e-06" izz="2.737710611822042e-07" ixy="2.8716069409503997e-09" iyz="4.109126233720062e-17" ixz="4.1145472445824893e-17" />
+        </inertial>
+        <visual name="right_BallHead3_visual">
+            <origin xyz="1.1956066714446933e-09 -4.58834428229693e-09 -0.013000000000000862" rpy="3.141592653589783 3.934299958941498e-15 0.7853981633974996" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_BallHead3_collision">
+            <origin xyz="1.1956066714446933e-09 -4.58834428229693e-09 -0.013000000000000862" rpy="3.141592653589783 3.934299958941498e-15 0.7853981633974996" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="right_BallHead4">
+        <inertial>
+            <origin xyz="-4.386821910173921e-09 0.009589708885663196 -1.1406337563357737e-09" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="1.932891132522762e-06" iyy="2.7377106118101156e-07" izz="1.9291994657996323e-06" ixy="5.272619900035088e-17" iyz="2.461138943753319e-17" ixz="2.199778540150788e-09" />
+        </inertial>
+        <visual name="right_BallHead4_visual">
+            <origin xyz="-4.38645692213413e-09 -7.629452625224076e-15 -1.1404634747691489e-09" rpy="1.5707963267948857 -0.4363323129985301 4.816115466517679e-15" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="right_BallHead4_collision">
+            <origin xyz="-4.38645692213413e-09 -7.629452625224076e-15 -1.1404634747691489e-09" rpy="1.5707963267948857 -0.4363323129985301 4.816115466517679e-15" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/right_BallHead4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_ballcap3">
+        <inertial>
+            <origin xyz="0.0030104375763919224 0.000254305364122942 -0.008271101390571616" rpy="0.0 -0.0 -2.333630729197928e-61" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.363393957077313e-06" iyy="4.947236547253944e-06" izz="1.6665567156536054e-06" ixy="8.059554625311324e-08" iyz="-2.2143444343891624e-07" ixz="1.1314575673118665e-06" />
+        </inertial>
+        <visual name="left_ballcap3_visual">
+            <origin xyz="1.1956060319562311e-09 -5.284661597215745e-16 4.5883436428084676e-09" rpy="1.5707963267949046 -1.2217304763960832 3.1415926535897927" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_ballcap3_collision">
+            <origin xyz="1.1956060319562311e-09 -5.284661597215745e-16 4.5883436428084676e-09" rpy="1.5707963267949046 -1.2217304763960832 3.1415926535897927" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_lowerlink2">
+        <inertial>
+            <origin xyz="-0.3288924132760585 -4.929390229335695e-16 -0.1197070484045733" rpy="-1.2954252832641667e-77 -0.0 0.0" />
+            <mass value="0.06896836527196099" />
+            <inertia ixx="0.0003301663266748389" iyy="0.002816597273290435" izz="0.0024872089959863198" ixy="-4.839177311159084e-19" iyz="-7.877259977715953e-20" ixz="-0.0009049868541262645" />
+        </inertial>
+        <visual name="left_lowerlink2_visual">
+            <origin xyz="-0.6577848305511327 -5.506706202140776e-16 -0.2394140985685401" rpy="2.0655454943626657e-14 1.2217304763960832 2.232968096276408e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_lowerlink2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_lowerlink2_collision">
+            <origin xyz="-0.6577848305511327 -5.506706202140776e-16 -0.2394140985685401" rpy="2.0655454943626657e-14 1.2217304763960832 2.232968096276408e-14" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_lowerlink2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_BallHead4">
+        <inertial>
+            <origin xyz="-4.3868371335520355e-09 -0.009589708885671492 -1.1405986555246272e-09" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="1.9332450777012665e-06" iyy="2.7377106118090314e-07" izz="1.9288455206211276e-06" ixy="-5.467087935023478e-17" iyz="-1.9908662392265075e-17" ixz="1.845833361700279e-09" />
+        </inertial>
+        <visual name="left_BallHead4_visual">
+            <origin xyz="-4.386458716254538e-09 -6.883382752675971e-16 -1.1404609168153002e-09" rpy="-1.5707963267948966 -0.3490658503988138 4.1087577352478115e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_BallHead4_collision">
+            <origin xyz="-4.386458716254538e-09 -6.883382752675971e-16 -1.1404609168153002e-09" rpy="-1.5707963267948966 -0.3490658503988138 4.1087577352478115e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_BallHead3">
+        <inertial>
+            <origin xyz="1.195241239315692e-09 4.588173325714706e-09 -0.003410291114328636" rpy="0.0 -0.0 0.0" />
+            <mass value="0.019697866771421567" />
+            <inertia ixx="1.9328911325250386e-06" iyy="1.929199465798819e-06" izz="2.737710611856736e-07" ixy="2.19977854118078e-09" iyz="2.461138931542095e-17" ixz="5.2719330637107653e-17" />
+        </inertial>
+        <visual name="left_BallHead3_visual">
+            <origin xyz="1.1956061740647784e-09 4.588343571754195e-09 -0.01299999999999947" rpy="3.1415926535897922 5.875221019338541e-15 0.43633231299853037" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_BallHead3_collision">
+            <origin xyz="1.1956061740647784e-09 4.588343571754195e-09 -0.01299999999999947" rpy="3.1415926535897922 5.875221019338541e-15 0.43633231299853037" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_BallHead3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="left_ballcap4">
+        <inertial>
+            <origin xyz="0.0007778592327553823 0.000804305364122806 -0.002137155161545774" rpy="0.0 -0.0 0.0" />
+            <mass value="0.03442691978038476" />
+            <inertia ixx="4.3633939570753635e-06" iyy="4.947236547248957e-06" izz="1.6665567156533894e-06" ixy="-8.05955462530319e-08" iyz="2.2143444343883492e-07" ixz="1.131457567311108e-06" />
+        </inertial>
+        <visual name="left_ballcap4_visual">
+            <origin xyz="0.003788295613541255 0.0005499999999993355 -0.010408261140461032" rpy="-1.5707963267949046 1.2217304763960828 -4.832397640429766e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="left_ballcap4_collision">
+            <origin xyz="0.003788295613541255 0.0005499999999993355 -0.010408261140461032" rpy="-1.5707963267949046 1.2217304763960828 -4.832397640429766e-16" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/left_ballcap4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <link name="plate_down">
+        <inertial>
+            <origin xyz="-0.013551399972674539 -0.06431609934603671 5.811548298595426e-08" rpy="0.0 -0.0 0.0" />
+            <mass value="0.681630003843835" />
+            <inertia ixx="0.0007588908587203534" iyy="0.0007159581714304072" izz="0.0014298660773883263" ixy="-1.159437890425339e-05" iyz="-1.7540343984444732e-12" ixz="-1.4493301268583133e-10" />
+        </inertial>
+        <visual name="plate_down_visual">
+            <origin xyz="-0.008792319170941712 -0.07497527588324325 0.010000051140457948" rpy="-3.141592653589792 3.332540269980277e-14 -5.311306949806751e-13" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/plate_down.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+        <collision name="plate_down_collision">
+            <origin xyz="-0.008792319170941712 -0.07497527588324325 0.010000051140457948" rpy="-3.141592653589792 3.332540269980277e-14 -5.311306949806751e-13" />
+            <geometry>
+                <mesh filename="package://agri_bot/meshes/plate_down.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </collision>
+    </link>
+    <joint name="leftdown_bearingouterring_旋转-43" type="continuous">
+        <origin xyz="0.0 0.0055000000000000075 -7.105427357601002e-17" rpy="3.141592653589793 -6.310887241768095e-30 -5.11952165286591e-30" />
+        <parent link="leftdown_bearingouterring" />
+        <child link="left_rotatewheel" />
+        <axis xyz="-5.757189418923926e-30 -1.0 -0.0" />
+    </joint>
+    <joint name="rightdown_bearingouterring_旋转-77" type="continuous">
+        <origin xyz="0.0 -0.0055000000000000075 0.0" rpy="-3.051627314190188e-59 -1.2621774483536192e-29 -9.807970340856643e-30" />
+        <parent link="rightdown_bearingouterring" />
+        <child link="right_rotatewheel" />
+        <axis xyz="1.1489325900298666e-29 -0.9999999999999999 -7.888609052210118e-31" />
+    </joint>
+    <joint name="left_rotatewheel_刚性-93" type="fixed">
+        <origin xyz="0.021000000000000015 -0.028000000000000008 0.0" rpy="-2.7230379281401816e-59 -3.1554436208840472e-30 -7.62132227074919e-30" />
+        <parent link="left_rotatewheel" />
+        <child link="left_Drummotorbracket" />
+    </joint>
+    <joint name="right_bearinginnerring_刚性-105" type="fixed">
+        <origin xyz="0.0 0.001999999999999993 0.0" rpy="3.141592653589793 -6.310887241768096e-30 6.052775040872213e-30" />
+        <parent link="right_bearinginnerring" />
+        <child link="rightdown_bearingouterring" />
+    </joint>
+    <joint name="right_bearingouterring_刚性-106" type="fixed">
+        <origin xyz="0.0 0.0055000000000000075 0.0" rpy="0.0 -0.0 -4.3714194814301884e-30" />
+        <parent link="right_bearingouterring" />
+        <child link="right_bearinginnerring" />
+    </joint>
+    <joint name="right_bearingbox_刚性-107" type="fixed">
+        <origin xyz="0.0 -0.026999999999999993 0.04" rpy="-1.5777218104420236e-30 -1.5707963267948966 0" />
+        <parent link="right_bearingbox" />
+        <child link="right_bearingouterring" />
+    </joint>
+    <joint name="left_bearinginnerring_刚性-108" type="fixed">
+        <origin xyz="0.0 0.001999999999999993 -7.105427357601002e-17" rpy="2.4651903288156624e-32 3.155443620884048e-30 -6.688751986126326e-30" />
+        <parent link="left_bearinginnerring" />
+        <child link="leftdown_bearingouterring" />
+    </joint>
+    <joint name="left_bearingouterring_刚性-109" type="fixed">
+        <origin xyz="0.0 0.0055000000000000075 0.0" rpy="0.0 -0.0 -1.2965215940068073e-30" />
+        <parent link="left_bearingouterring" />
+        <child link="left_bearinginnerring" />
+    </joint>
+    <joint name="left_bearingbox_刚性-110" type="fixed">
+        <origin xyz="0.0 0.026999999999999993 0.04" rpy="3.141592653589793 -1.5707963267948966 0" />
+        <parent link="left_bearingbox" />
+        <child link="left_bearingouterring" />
+    </joint>
+    <joint name="left_Drummotorbracket_旋转-113" type="continuous">
+        <origin xyz="-0.021000000000000015 -0.19650000000000004 -0.07200000000000004" rpy="1.5707963267948966 1.5777218104420236e-30 1.5707963267948966" />
+        <parent link="left_Drummotorbracket" />
+        <child link="left_movewheel" />
+        <axis xyz="1.5777218104420236e-30 -1.0 -1.9721522630525295e-31" />
+    </joint>
+    <joint name="down_Frameconnector1_刚性-148" type="fixed">
+        <origin xyz="0.014436280000000004 0.02056025 0.023000000000000045" rpy="0.0 -0.0 1.1770883222517587e-30" />
+        <parent link="down_Frameconnector1" />
+        <child link="upper_Frameconnector1" />
+    </joint>
+    <joint name="upper_Frameconnector1_刚性-151" type="fixed">
+        <origin xyz="0.027170249999999996 -0.038780760000000004 0.0029999999999999714" rpy="-1.0471975511965752 1.5707963267948963 0" />
+        <parent link="upper_Frameconnector1" />
+        <child link="Aluminum_145extrusion2" />
+    </joint>
+    <joint name="Aluminum_145extrusion2_刚性-152" type="fixed">
+        <origin xyz="-0.0010000000000000143 0.15000000767702218 -0.2598076255676692" rpy="1.047197551196575 1.1102230246252e-16 1.9229626863835394e-16" />
+        <parent link="Aluminum_145extrusion2" />
+        <child link="upper_Frameconnector2" />
+    </joint>
+    <joint name="upper_Frameconnector2_刚性-153" type="fixed">
+        <origin xyz="0.003999999999999986 0.02146026000000001 0.017170260000000007" rpy="-3.141592653589793 -1.5707963267948966 0" />
+        <parent link="upper_Frameconnector2" />
+        <child link="down_Frameconnector2" />
+    </joint>
+    <joint name="upper_Frameconnector2_刚性-155" type="fixed">
+        <origin xyz="0.0010000000000000143 0.017320510000000004 -0.029999999999999964" rpy="-1.047197551196575 -2.2204460492503128e-16 -1.232595164407833e-32" />
+        <parent link="upper_Frameconnector2" />
+        <child link="Aluminum_145extrusion1" />
+    </joint>
+    <joint name="Aluminum_145extrusion1_刚性-156" type="fixed">
+        <origin xyz="-0.0010000000000000852 0.15000000000000593 0.2598076211353283" rpy="-2.0943951023932184 1.1102230246252007e-16 1.922962686383539e-16" />
+        <parent link="Aluminum_145extrusion1" />
+        <child link="upper_Frameconnector3" />
+    </joint>
+    <joint name="upper_Frameconnector1_刚性-157" type="fixed">
+        <origin xyz="0.027170249999999996 -0.004139740000000001 0.0029999999999999714" rpy="-2.0943951023931704 1.5707963267948966 0" />
+        <parent link="upper_Frameconnector1" />
+        <child link="Aluminum_145extrusion3" />
+    </joint>
+    <joint name="upper_Frameconnector3_刚性-159" type="fixed">
+        <origin xyz="0.003999999999999986 0.025600000000000022 -0.01" rpy="2.465190328815662e-32 1.5707963267948966 0" />
+        <parent link="upper_Frameconnector3" />
+        <child link="down_Frameconnector3" />
+    </joint>
+    <joint name="right_BallHead1_旋转-173" type="continuous">
+        <origin xyz="-0.01125833 0.0 -0.006499999999999986" rpy="1.5707963267948966 3.2271327187395895e-17 -9.490193664624979e-18" />
+        <parent link="right_BallHead1" />
+        <child link="left_ballcap1" />
+        <axis xyz="-0.8660250000000003 -0.5000000000000001 4.9414205705701135e-18" />
+    </joint>
+    <joint name="left_ballcap2_旋转-176" type="continuous">
+        <origin xyz="-0.0023704699999999956 0.003005760000000004 -0.010408259999999992" rpy="-2.2322998274759808e-17 -3.538104841500094e-18 6.391764207230536e-17" />
+        <parent link="left_ballcap2" />
+        <child link="right_BallHead2" />
+        <axis xyz="-0.8660249999999999 -0.49999999999999994 -3.854099685190274e-17" />
+    </joint>
+    <joint name="left_BallHead1_旋转-178" type="continuous">
+        <origin xyz="0.01125833 0.0 -0.006500000000000021" rpy="-1.5707963267948968 -3.227132718739591e-17 1.7958045851540986e-17" />
+        <parent link="left_BallHead1" />
+        <child link="right_ballcap1" />
+        <axis xyz="0.866025 0.4999999999999999 -5.882673277161943e-18" />
+    </joint>
+    <joint name="right_ballcap2_旋转-181" type="continuous">
+        <origin xyz="-0.0014178400000000003 0.003555760000000001 -0.010408259999999992" rpy="3.6894541028108677e-17 -1.445585837043169e-17 8.6948086136358e-18" />
+        <parent link="right_ballcap2" />
+        <child link="left_BallHead2" />
+        <axis xyz="0.866025 0.4999999999999999 -1.5747027049747915e-17" />
+    </joint>
+    <joint name="left_BallHead5_旋转-209" type="continuous">
+        <origin xyz="-0.01125833 0.0 -0.006499999999999986" rpy="-1.5707963267948966 -3.702346858300241e-17 -7.399883388098999e-17" />
+        <parent link="left_BallHead5" />
+        <child link="right_ballcap5" />
+        <axis xyz="-0.866025 0.5 -2.1513866886435704e-17" />
+    </joint>
+    <joint name="right_ballcap6_旋转-212" type="continuous">
+        <origin xyz="-0.0023704599999999944 -0.003005760000000004 -0.010408259999999992" rpy="1.806773471139793e-17 2.113492471771826e-17 7.218060652611079e-17" />
+        <parent link="right_ballcap6" />
+        <child link="left_BallHead6" />
+        <axis xyz="-0.8660250000000003 0.5 -1.429923070272746e-17" />
+    </joint>
+    <joint name="right_BallHead5_旋转-214" type="continuous">
+        <origin xyz="0.01125833 0.0 -0.006500000000000021" rpy="1.5707963267948966 3.702346858300241e-17 -6.120643461423431e-17" />
+        <parent link="right_BallHead5" />
+        <child link="left_ballcap5" />
+        <axis xyz="0.866025 -0.5000000000000001 -4.1691454925713877e-17" />
+    </joint>
+    <joint name="left_ballcap6_旋转-217" type="continuous">
+        <origin xyz="-0.0014178300000000006 -0.003555760000000001 -0.010408259999999992" rpy="-3.996738376249834e-17 1.802846208294255e-17 -1.5556335851847178e-17" />
+        <parent link="left_ballcap6" />
+        <child link="right_BallHead6" />
+        <axis xyz="0.866025 -0.5 6.339988904979197e-17" />
+    </joint>
+    <joint name="Endstop_Holder1_刚性-233" type="fixed">
+        <origin xyz="0.002142509999999992 -0.008954060000000012 -0.01723906999999999" rpy="-3.141592653589793 -0.6632251157578487 3.1415926535897922" />
+        <parent link="Endstop_Holder1" />
+        <child link="Endstop_LimitSwitch1" />
+    </joint>
+    <joint name="Aluminum_145extrusion3_刚性-234" type="fixed">
+        <origin xyz="-0.0010000000000000143 0.07499999950839027 0.12990381028383102" rpy="-3.1415926535897927 -0.5235987755982716 1.5707963267948957" />
+        <parent link="Aluminum_145extrusion3" />
+        <child link="Endstop_Holder1" />
+    </joint>
+    <joint name="Endstop_Holder2_刚性-235" type="fixed">
+        <origin xyz="0.01385822000000001 -0.008954060000000012 0.01047499999999997" rpy="-3.141592653589793 -0.6632251157578489 3.1415926535897922" />
+        <parent link="Endstop_Holder2" />
+        <child link="Endstop_LimitSwitch2" />
+    </joint>
+    <joint name="Aluminum_145extrusion1_刚性-236" type="fixed">
+        <origin xyz="-0.0010000000000000143 0.07500000000000295 0.12990381056766415" rpy="3.1415926535897927 0.5235987755983236 1.570796326794896" />
+        <parent link="Aluminum_145extrusion1" />
+        <child link="Endstop_Holder2" />
+    </joint>
+    <joint name="Endstop_Holder3_刚性-237" type="fixed">
+        <origin xyz="0.019464820000000008 -0.008954060000000012 -0.004764070000000036" rpy="2.5605720161817283e-30 0.663225115757849 9.43689570931383e-16" />
+        <parent link="Endstop_Holder3" />
+        <child link="Endstop_LimitSwitch3" />
+    </joint>
+    <joint name="Aluminum_145extrusion2_刚性-238" type="fixed">
+        <origin xyz="-0.0010000000000000143 0.07499999950838407 -0.1299038102838346" rpy="3.845925372767348e-16 -0.5235987755983237 -1.5707963267948974" />
+        <parent link="Aluminum_145extrusion2" />
+        <child link="Endstop_Holder3" />
+    </joint>
+    <joint name="left_Part8_旋转-298" type="continuous">
+        <origin xyz="0.0 0.0 0.17600000000000002" rpy="-3.141592653589793 2.31296463463575e-16 3.9443045261049728e-31" />
+        <parent link="left_Part8" />
+        <child link="left_supportwheel" />
+        <axis xyz="-3.9443045261050586e-31 1.0000000000000207 -1.5831398083251301e-15" />
+    </joint>
+    <joint name="right_Part8_旋转-299" type="continuous">
+        <origin xyz="0.0 0.0 0.17600000000000002" rpy="-2.0222262130761928e-30 -2.3129646346357494e-16 -3.549874073494486e-30" />
+        <parent link="right_Part8" />
+        <child link="right_supportwheel" />
+        <axis xyz="-3.549874073494572e-30 1.0000000000000189 -2.5880952233339136e-15" />
+    </joint>
+    <joint name="base_link_刚性-301" type="fixed">
+        <origin xyz="0.08750000000000001 0.0 0.396" rpy="3.141592653589793 -0.0 0.0" />
+        <parent link="base_link" />
+        <child link="down_Frameconnector1" />
+    </joint>
+    <joint name="base_link_刚性-303" type="fixed">
+        <origin xyz="0.29 -0.56 -0.19899999999999998" rpy="-1.5707963267948966 -0.0 -1.5707963267948966" />
+        <parent link="base_link" />
+        <child link="right_bearingbox" />
+    </joint>
+    <joint name="base_link_刚性-304" type="fixed">
+        <origin xyz="-0.27 -0.56 -0.27899999999999997" rpy="3.141592653589793 -0.0 0.0" />
+        <parent link="base_link" />
+        <child link="right_Part8" />
+    </joint>
+    <joint name="base_link_刚性-305" type="fixed">
+        <origin xyz="-0.27 0.56 -0.27899999999999997" rpy="3.141592653589793 -0.0 0.0" />
+        <parent link="base_link" />
+        <child link="left_Part8" />
+    </joint>
+    <joint name="base_link_刚性-306" type="fixed">
+        <origin xyz="0.29 0.56 -0.19899999999999998" rpy="1.5707963267948966 -0.0 1.5707963267948966" />
+        <parent link="base_link" />
+        <child link="left_bearingbox" />
+    </joint>
+    <joint name="down_Frameconnector2_刚性-308" type="fixed">
+        <origin xyz="-0.010341760000000004 -0.02326174 0.023000000000000045" rpy="3.155443620884048e-30 -0.0 5.551115123084002e-17" />
+        <parent link="down_Frameconnector2" />
+        <child link="right_3030190" />
+    </joint>
+    <joint name="down_Frameconnector3_刚性-309" type="fixed">
+        <origin xyz="0.025023850000000004 0.002222049999999989 0.023000000000000045" rpy="-3.1554436208840472e-30 6.508102468073347e-30 5.551115123248137e-17" />
+        <parent link="down_Frameconnector3" />
+        <child link="left_3030190" />
+    </joint>
+    <joint name="right_rotatewheel_刚性-312" type="fixed">
+        <origin xyz="-0.010500000000000008 -0.028000000000000008 -0.018186529999999975" rpy="-6.310887241768096e-30 6.409494854920722e-30 7.586524897200006e-30" />
+        <parent link="right_rotatewheel" />
+        <child link="right_Drummotorbracket" />
+    </joint>
+    <joint name="Stepper_motorbracket2_刚性-332" type="fixed">
+        <origin xyz="0.06504998 0.0355 0.014050030000000007" rpy="1.4388833638940482e-31 1.5707963267948966 0" />
+        <parent link="Stepper_motorbracket2" />
+        <child link="part_reducer2" />
+    </joint>
+    <joint name="part_reducer2_旋转-334" type="continuous">
+        <origin xyz="-0.025000000000000036 0.03 -0.025" rpy="-3.141592653589793 -1.5707963267948966 0" />
+        <parent link="part_reducer2" />
+        <child link="Delta_upperarm2" />
+        <axis xyz="0.0 -1.0 9.860761315262648e-32" />
+    </joint>
+    <joint name="Bracket_fixed2_刚性-337" type="fixed">
+        <origin xyz="-0.006999999999999958 0.09200000000000003 -0.04149999999999997" rpy="2.2186712959340957e-31 -1.5707963267948966 0" />
+        <parent link="Bracket_fixed2" />
+        <child link="Stepper_motorbracket2" />
+    </joint>
+    <joint name="part_reducer2_刚性-345" type="fixed">
+        <origin xyz="-0.0014999999999999857 -0.095 -0.048499999999999995" rpy="9.860761315262648e-32 -1.5707963267948966 0" />
+        <parent link="part_reducer2" />
+        <child link="stepper_motor2" />
+    </joint>
+    <joint name="Aluminum_145extrusion1_刚性-346" type="fixed">
+        <origin xyz="-0.019999740000000016 -0.008660254037844277 0.0050000000000002135" rpy="1.0471975511965752 1.1102230246252007e-16 1.922962686383539e-16" />
+        <parent link="Aluminum_145extrusion1" />
+        <child link="Bracket_fixed2" />
+    </joint>
+    <joint name="Delta_upperarm_刚性-352" type="fixed">
+        <origin xyz="0.1155923 -0.17821173 0.21213204000000002" rpy="1.5707963267948966 1.2900693870862334e-33 -2.3239824043858912e-17" />
+        <parent link="Delta_upperarm" />
+        <child link="left_BallHead1" />
+    </joint>
+    <joint name="Delta_upperarm_刚性-353" type="fixed">
+        <origin xyz="0.08095128000000001 -0.19821173000000003 0.21213204000000002" rpy="-1.5707963267948966 1.2900693870862334e-33 -2.3239824043858912e-17" />
+        <parent link="Delta_upperarm" />
+        <child link="right_BallHead1" />
+    </joint>
+    <joint name="right_ballcap1_刚性-354" type="fixed">
+        <origin xyz="-0.002370460000000012 0.0030057599999999953 -0.010408259999999956" rpy="1.1102230246251568e-16 -1.5707963267948966 0" />
+        <parent link="right_ballcap1" />
+        <child link="right_lowerlink1" />
+    </joint>
+    <joint name="right_lowerlink1_刚性-355" type="fixed">
+        <origin xyz="-0.65778484 0.2073386900000001 0.11970705000000002" rpy="1.1798544146409604e-16 1.5707963267948966 0" />
+        <parent link="right_lowerlink1" />
+        <child link="right_ballcap2" />
+    </joint>
+    <joint name="left_ballcap1_刚性-356" type="fixed">
+        <origin xyz="-0.001417830000000002 0.003555760000000028 -0.010408260000000027" rpy="1.1102230246251565e-16 -1.5707963267948966 0" />
+        <parent link="left_ballcap1" />
+        <child link="left_lowerlink1" />
+    </joint>
+    <joint name="left_lowerlink1_刚性-357" type="fixed">
+        <origin xyz="-0.6577848399999999 0.20733869 0.11970704999999995" rpy="2.051024011057855e-17 1.5707963267948966 0" />
+        <parent link="left_lowerlink1" />
+        <child link="left_ballcap2" />
+    </joint>
+    <joint name="Bracket_fixed3_刚性-358" type="fixed">
+        <origin xyz="-0.006999999999999958 0.09844005999999998 0.08750318000000004" rpy="3.141592653589793 1.5707963267948966 0" />
+        <parent link="Bracket_fixed3" />
+        <child link="Stepper_motorbracket3" />
+    </joint>
+    <joint name="Aluminum_145extrusion2_刚性-359" type="fixed">
+        <origin xyz="-0.019999740000000016 0.00866025701892232 0.005000005163378036" rpy="-2.0943951023932184 1.1102230246252e-16 1.9229626863835394e-16" />
+        <parent link="Aluminum_145extrusion2" />
+        <child link="Bracket_fixed3" />
+    </joint>
+    <joint name="part_reducer3_刚性-360" type="fixed">
+        <origin xyz="-0.0015000000000000568 0.04879904 0.08152241" rpy="5.551115123137457e-17 -1.5707963267948966 0" />
+        <parent link="part_reducer3" />
+        <child link="stepper_motor3" />
+    </joint>
+    <joint name="Stepper_motorbracket3_刚性-361" type="fixed">
+        <origin xyz="-0.01590319 0.011545130000000015 0.014049979999999991" rpy="5.5511151231141914e-17 1.5707963267948966 0" />
+        <parent link="Stepper_motorbracket3" />
+        <child link="part_reducer3" />
+    </joint>
+    <joint name="part_reducer3_旋转-362" type="continuous">
+        <origin xyz="-0.025000000000000036 0.006650639999999992 -0.038480759999999996" rpy="-3.141592653589793 -1.5707963267948966 0" />
+        <parent link="part_reducer3" />
+        <child link="Delta_upperarm3" />
+        <axis xyz="-0.866025 0.5 -2.775557561568728e-17" />
+    </joint>
+    <joint name="Delta_upperarm3_刚性-363" type="fixed">
+        <origin xyz="0.09653974 0.18921173000000002 0.21213204000000002" rpy="1.5707963267948966 -4.32203460128916e-45 3.702346858300241e-17" />
+        <parent link="Delta_upperarm3" />
+        <child link="left_BallHead5" />
+    </joint>
+    <joint name="Delta_upperarm3_刚性-364" type="fixed">
+        <origin xyz="0.13118074999999998 0.16921173000000003 0.21213204000000002" rpy="-1.5707963267948966 -4.32203460128916e-45 3.702346858300241e-17" />
+        <parent link="Delta_upperarm3" />
+        <child link="right_BallHead5" />
+    </joint>
+    <joint name="right_ballcap5_刚性-365" type="fixed">
+        <origin xyz="-0.0014178399999999947 -0.0035557599999999925 -0.010408260000000027" rpy="1.1430058505549753e-33 -1.5707963267948966 0" />
+        <parent link="right_ballcap5" />
+        <child link="right_lowerlink3" />
+    </joint>
+    <joint name="right_lowerlink3_刚性-366" type="fixed">
+        <origin xyz="-0.6577848399999999 -0.20733869000000005 0.11970705" rpy="-7.331801296072883e-17 1.5707963267948966 0" />
+        <parent link="right_lowerlink3" />
+        <child link="right_ballcap6" />
+    </joint>
+    <joint name="left_ballcap5_刚性-367" type="fixed">
+        <origin xyz="-0.0023704599999999944 -0.0030057599999999953 -0.010408260000000027" rpy="-5.551115123125783e-17 -1.5707963267948966 0" />
+        <parent link="left_ballcap5" />
+        <child link="left_lowerlink3" />
+    </joint>
+    <joint name="left_lowerlink3_刚性-368" type="fixed">
+        <origin xyz="-0.6577848399999999 -0.20733869 0.11970705" rpy="4.065702144383229e-17 1.5707963267948966 0" />
+        <parent link="left_lowerlink3" />
+        <child link="left_ballcap6" />
+    </joint>
+    <joint name="Bracket_fixed1_刚性-373" type="fixed">
+        <origin xyz="-0.006999999999999958 -0.02305994 0.12294100000000001" rpy="-1.9721522630525295e-31 -1.5707963267948966 0" />
+        <parent link="Bracket_fixed1" />
+        <child link="Stepper_motorbracket1" />
+    </joint>
+    <joint name="Aluminum_145extrusion3_刚性-374" type="fixed">
+        <origin xyz="-0.019999740000000016 0.15866026469595665 0.2548076204042836" rpy="2.0943951023931704 -2.1349174499181077e-32 -1.2325951644077773e-32" />
+        <parent link="Aluminum_145extrusion3" />
+        <child link="Bracket_fixed1" />
+    </joint>
+    <joint name="Stepper_motorbracket1_刚性-375" type="fixed">
+        <origin xyz="-0.0020467799999999993 -0.019545130000000004 0.014049979999999991" rpy="-5.55111512312685e-17 1.5707963267948966 0" />
+        <parent link="Stepper_motorbracket1" />
+        <child link="part_reducer1" />
+    </joint>
+    <joint name="part_reducer1_刚性-376" type="fixed">
+        <origin xyz="-0.0015000000000000568 0.046200960000000006 -0.08302240999999999" rpy="-5.551115123126496e-17 -1.5707963267948966 0" />
+        <parent link="part_reducer1" />
+        <child link="stepper_motor1" />
+    </joint>
+    <joint name="part_reducer1_旋转-377" type="continuous">
+        <origin xyz="-0.025000000000000036 -0.036650640000000005 0.013480760000000001" rpy="3.141592653589793 -1.5707963267948966 0" />
+        <parent link="part_reducer1" />
+        <child link="Delta_upperarm" />
+        <axis xyz="0.866025 0.5 2.7755575615623154e-17" />
+    </joint>
+    <joint name="Delta_upperarm2_刚性-378" type="fixed">
+        <origin xyz="-0.21213204000000005 -0.011000000000000001 0.21213203000000003" rpy="-1.5707963267948966 2.6974996601982955e-30 -8.874685183736383e-31" />
+        <parent link="Delta_upperarm2" />
+        <child link="right_BallHead3" />
+    </joint>
+    <joint name="right_BallHead3_旋转-379" type="continuous">
+        <origin xyz="0.0 0.0 -0.013000000000000001" rpy="1.5707963267948966 -8.874685183736383e-31 -7.888609052210118e-31" />
+        <parent link="right_BallHead3" />
+        <child link="right_ballcap3" />
+        <axis xyz="0.0 -1.0 0.0" />
+    </joint>
+    <joint name="right_ballcap3_刚性-380" type="fixed">
+        <origin xyz="0.0037883000000000066 0.0005500000000000017 -0.010408260000000027" rpy="-0.0 -1.5707963267948966 0" />
+        <parent link="right_ballcap3" />
+        <child link="right_lowerlink2" />
+    </joint>
+    <joint name="right_lowerlink2_刚性-381" type="fixed">
+        <origin xyz="-0.6577848300000001 4.440892098500626e-18 -0.23941410000000002" rpy="-0.0 1.5707963267948966 0" />
+        <parent link="right_lowerlink2" />
+        <child link="right_ballcap4" />
+    </joint>
+    <joint name="right_ballcap4_旋转-382" type="continuous">
+        <origin xyz="0.0037883000000000244 -0.0005500000000000017 -0.01040826000000001" rpy="-1.5746403225310037e-30 -5.551115123125783e-17 -5.551115123125821e-17" />
+        <parent link="right_ballcap4" />
+        <child link="right_BallHead4" />
+        <axis xyz="5.551115123125783e-17 -1.0 0.0" />
+    </joint>
+    <joint name="Delta_upperarm2_刚性-383" type="fixed">
+        <origin xyz="-0.21213204000000005 0.029000000000000005 0.21213203000000003" rpy="1.5707963267948966 2.6974996601982955e-30 -8.874685183736383e-31" />
+        <parent link="Delta_upperarm2" />
+        <child link="left_BallHead3" />
+    </joint>
+    <joint name="left_BallHead3_旋转-384" type="continuous">
+        <origin xyz="0.0 0.0 -0.012999999999999998" rpy="-1.5707963267948966 5.551115123125871e-17 -5.916456789157588e-31" />
+        <parent link="left_BallHead3" />
+        <child link="left_ballcap3" />
+        <axis xyz="5.551115123125783e-17 1.0 -3.944304526105059e-31" />
+    </joint>
+    <joint name="left_ballcap3_刚性-385" type="fixed">
+        <origin xyz="0.0037883000000000066 -0.0005500000000000017 -0.010408260000000027" rpy="-5.551115123125783e-17 -1.5707963267948966 0" />
+        <parent link="left_ballcap3" />
+        <child link="left_lowerlink2" />
+    </joint>
+    <joint name="left_lowerlink2_刚性-386" type="fixed">
+        <origin xyz="-0.65778483 0.0 -0.23941410000000002" rpy="-1.183291357831518e-30 1.5707963267948966 0" />
+        <parent link="left_lowerlink2" />
+        <child link="left_ballcap4" />
+    </joint>
+    <joint name="left_ballcap4_旋转-387" type="continuous">
+        <origin xyz="0.0037883000000000066 0.0005500000000000017 -0.01040826000000001" rpy="-9.860761315262648e-31 -0.0 5.551115123125863e-17" />
+        <parent link="left_ballcap4" />
+        <child link="left_BallHead4" />
+        <axis xyz="5.551115123125783e-17 1.0 -5.9164567891575885e-31" />
+    </joint>
+    <joint name="right_BallHead2_刚性-390" type="fixed">
+        <origin xyz="0.011258339999999993 0.006500000000000013 0.0" rpy="-3.141592653589793 -5.744033557961115e-17 -5.551115123125784e-17" />
+        <parent link="right_BallHead2" />
+        <child link="plate_down" />
+    </joint>
+    <joint name="right_Drummotorbracket_旋转-391" type="continuous">
+        <origin xyz="0.010499999999999971 -0.19650000000000004 -0.05381347000000013" rpy="1.5707963267948966 -6.310887241768095e-30 1.5707963267948966" />
+        <parent link="right_Drummotorbracket" />
+        <child link="right_movewheel" />
+        <axis xyz="0.0 -0.9999999999999999 0.0" />
+    </joint>
+    <!-- <joint name="base_link_刚性-392" type="fixed">
+        <origin xyz="0.251 0.0 0.5810000000000001" rpy="3.141592653589793 -0.0 1.5707963267948966" />
+        <parent link="base_link" />
+        <child link="part_3030190" />
+    </joint>
+    <joint name="part_3030190_刚性-393" type="fixed">
+        <origin xyz="0.0 -0.30814 0.36" rpy="1.9721522630525295e-31 -0.0 1.5707963267948966" />
+        <parent link="part_3030190" />
+        <child link="part_D455soild2" />
+    </joint> -->
+</robot>

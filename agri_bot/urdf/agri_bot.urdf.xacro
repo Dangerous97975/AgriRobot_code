@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<robot name="agri_bot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- 引入您的機器人URDF -->
+  <xacro:include filename="$(find agri_bot)/urdf/agri_bot.urdf" />
+  
+  <!-- 引入RealSense D455的XACRO文件 -->
+  <xacro:include filename="$(find realsense2_description)/urdf/_materials.urdf.xacro" />
+  <xacro:include filename="$(find realsense2_description)/urdf/_d455.urdf.xacro" />
+
+  <!-- 引入VLP-16 Lidar的XACRO文件 -->
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />
+
+  <!-- 引入自製的RPliDAR xacro-->
+  <!-- <xacro:include filename="$(find agri_bot)/urdf/2d_lidar.urdf.xacro" /> -->
+
+  <!-- 引入自製的IMU的XACRO文件 -->
+  <xacro:include filename="$(find agri_bot)/urdf/imu.urdf.xacro" />
+
+  <!-- 定義參數，使用arg來接收從launch文件傳來的參數 -->
+    <!-- 相機參數 -->
+  <xacro:arg name="camera_x" default="0"/>
+  <xacro:arg name="camera_y" default="0.0"/>
+  <xacro:arg name="camera_z" default="0"/>
+  <xacro:arg name="camera_roll_deg" default="0.0"/>
+  <xacro:arg name="camera_pitch_deg" default="0"/>
+  <xacro:arg name="camera_yaw_deg" default="0.0"/>
+
+    <!-- Lidar參數 -->
+  <xacro:arg name="lidar_x" default="0.0"/>
+  <xacro:arg name="lidar_y" default="0.0"/>
+  <xacro:arg name="lidar_z" default="0.5"/>
+  <xacro:arg name="lidar_roll_deg" default="0.0"/>
+  <xacro:arg name="lidar_pitch_deg" default="0.0"/>
+  <xacro:arg name="lidar_yaw_deg" default="0.0"/>
+
+    <!-- IMU參數 -->
+  <xacro:arg name="imu_x" default="0.0"/>
+  <xacro:arg name="imu_y" default="0.0"/>
+  <xacro:arg name="imu_z" default="0.3"/>
+  <xacro:arg name="imu_roll_deg" default="0.0"/>
+  <xacro:arg name="imu_pitch_deg" default="0.0"/>
+  <xacro:arg name="imu_yaw_deg" default="0.0"/>
+
+  <!-- 將參數轉換為屬性，這樣可以在表達式中使用 -->
+  <xacro:property name="camera_x_val" value="$(arg camera_x)"/>
+  <xacro:property name="camera_y_val" value="$(arg camera_y)"/>
+  <xacro:property name="camera_z_val" value="$(arg camera_z)"/>
+  <xacro:property name="camera_roll_deg_val" value="$(arg camera_roll_deg)"/>
+  <xacro:property name="camera_pitch_deg_val" value="$(arg camera_pitch_deg)"/>
+  <xacro:property name="camera_yaw_deg_val" value="$(arg camera_yaw_deg)"/>
+
+  <xacro:property name="lidar_x_val" value="$(arg lidar_x)"/>
+  <xacro:property name="lidar_y_val" value="$(arg lidar_y)"/>
+  <xacro:property name="lidar_z_val" value="$(arg lidar_z)"/>
+  <xacro:property name="lidar_roll_deg_val" value="$(arg lidar_roll_deg)"/>
+  <xacro:property name="lidar_pitch_deg_val" value="$(arg lidar_pitch_deg)"/>
+  <xacro:property name="lidar_yaw_deg_val" value="$(arg lidar_yaw_deg)"/>
+
+  <xacro:property name="imu_x_val" value="$(arg imu_x)"/>
+  <xacro:property name="imu_y_val" value="$(arg imu_y)"/>
+  <xacro:property name="imu_z_val" value="$(arg imu_z)"/>
+  <xacro:property name="imu_roll_deg_val" value="$(arg imu_roll_deg)"/>
+  <xacro:property name="imu_pitch_deg_val" value="$(arg imu_pitch_deg)"/>
+  <xacro:property name="imu_yaw_deg_val" value="$(arg imu_yaw_deg)"/>
+
+  <!-- 將角度轉換為弧度 -->
+  <!-- <xacro:property name="pi" value="3.14159265359"/> -->
+  <xacro:property name="camera_roll" value="${pi * camera_roll_deg_val / 180.0}"/>
+  <xacro:property name="camera_pitch" value="${pi * camera_pitch_deg_val / 180.0}"/>
+  <xacro:property name="camera_yaw" value="${pi * camera_yaw_deg_val / 180.0}"/>
+
+  <xacro:property name="lidar_roll" value="${pi * lidar_roll_deg_val / 180.0}"/>
+  <xacro:property name="lidar_pitch" value="${pi * lidar_pitch_deg_val / 180.0}"/>
+  <xacro:property name="lidar_yaw" value="${pi * lidar_yaw_deg_val / 180.0}"/>
+
+  <xacro:property name="imu_roll" value="${pi * imu_roll_deg_val / 180.0}"/>
+  <xacro:property name="imu_pitch" value="${pi * imu_pitch_deg_val / 180.0}"/>
+  <xacro:property name="imu_yaw" value="${pi * imu_yaw_deg_val / 180.0}"/>
+
+  <!-- Realsense D455 -->
+  <xacro:sensor_d455 parent="base_link" name="D455f" use_nominal_extrinsics="true">
+    <origin xyz="${camera_x_val} ${camera_y_val} ${camera_z_val}" rpy="${camera_roll} ${camera_pitch} ${camera_yaw}" />
+  </xacro:sensor_d455>
+
+    <!-- VLP-16 Lidar -->
+  <xacro:VLP-16 parent="base_link" name="VLP-16" topic="/velodyne_points" hz="10">
+    <origin xyz="${lidar_x_val} ${lidar_y_val} ${lidar_z_val}" rpy="${lidar_roll} ${lidar_pitch} ${lidar_yaw}" />
+  </xacro:VLP-16>
+
+  <!-- RPLiDAR S2-->
+  <!-- <xacro:laser_xacro xyz="${lidar_x_val} ${lidar_y_val} ${lidar_z_val}" rpy="${lidar_roll} ${lidar_pitch} 3.14" parent_link="base_link" /> -->
+
+  <!-- IMU -->
+  <xacro:imu_xacro xyz="${imu_x_val} ${imu_y_val} ${imu_z_val}" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}" parent_link="base_link" />
+
+</robot>

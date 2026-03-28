@@ -1,0 +1,18 @@
+trajectory_plan:
+  ros__parameters:
+    chessboard_size:
+    - 9
+    - 6
+    square_size_mm: 24
+    rvec:
+    - 3.1287057391296016
+    - 0.015100941411833508
+    - -0.039669120067705635
+    tvec:
+    - 96.42452546789423
+    - 57.81826342324793
+    - 575.9048334649798
+    delta2camera_offset:
+    - 0.0
+    - 0.0
+    - 0.0
