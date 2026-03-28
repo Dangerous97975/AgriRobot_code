@@ -1,0 +1,6 @@
+joy:
+  ros__parameters:
+    device_id: /dev/input/js4
+    deadzone: 0.05
+    autorepeat_rate: 20.0
+    coalesce_interval: 0.001
