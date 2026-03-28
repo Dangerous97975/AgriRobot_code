@@ -1,0 +1,68 @@
+amcl:
+  ros__parameters:
+    # 是否使用模擬時間
+    use_sim_time: False
+    
+    # 運動模型噪聲參數 - 控制機器人運動的不確定性
+    alpha1: 0.05      # 旋轉噪聲與旋轉運動的比例
+    alpha2: 0.05      # 旋轉噪聲與平移運動的比例
+    alpha3: 0.05      # 平移噪聲與平移運動的比例
+    alpha4: 0.05      # 平移噪聲與旋轉運動的比例
+    alpha5: 0.2       # 旋轉噪聲與旋轉運動的比例（用於全向運動模型）
+    
+    # 座標系設定
+    base_frame_id: "base_link"    # 機器人基座座標系
+    global_frame_id: "map"             # 全局座標系（地圖座標系）
+    odom_frame_id: "icp_odom"          # 里程計座標系
+    
+    # 雷射束跳過參數 - 用於處理異常雷射數據
+    beam_skip_distance: 0.5            # 跳過雷射束的距離閾值
+    beam_skip_error_threshold: 0.9     # 跳過雷射束的錯誤閾值
+    beam_skip_threshold: 0.3           # 跳過雷射束的閾值
+    do_beamskip: false                 # 是否啟用雷射束跳過功能
+    
+    # 雷射模型參數
+    lambda_short: 0.1                  # 短距離測量的指數分佈參數
+    laser_likelihood_max_dist: 2.0     # 雷射似然場的最大距離
+    laser_max_range: 50.0              # 雷射的最大有效範圍
+    laser_min_range: -1.0              # 雷射的最小有效範圍（-1表示使用雷射傳感器默認值）
+    laser_model_type: "likelihood_field" # 雷射模型類型
+    max_beams: 60                      # 用於定位的最大雷射束數量
+    
+    # 粒子濾波器參數
+    max_particles: 8000                # 最大粒子數量
+    min_particles: 200                 # 最小粒子數量
+    pf_err: 0.05                       # 粒子濾波器的平均錯誤
+    pf_z: 0.99                         # 粒子濾波器的信心度
+    resample_interval: 1               # 重新採樣間隔
+    
+    # 恢復參數 - 用於機器人迷失時的恢復
+    recovery_alpha_fast: 0.0           # 快速恢復參數
+    recovery_alpha_slow: 0.0           # 慢速恢復參數
+    
+    # 運動模型和更新參數
+    robot_model_type: "nav2_amcl::OmniMotionModel"  # 機器人運動模型類型
+    save_pose_rate: 0.5                # 保存位姿的頻率（Hz）
+    update_min_a: 0.1                  # 觸發濾波器更新的最小角度變化（弧度）
+    update_min_d: 0.01                 # 觸發濾波器更新的最小距離變化（米）
+    
+    # 雷射測量模型權重
+    sigma_hit: 0.2                     # 高斯分佈的標準差（用於hit模型）
+    z_hit: 0.5                         # hit測量的權重
+    z_max: 0.05                        # max測量的權重
+    z_rand: 0.5                        # 隨機測量的權重
+    z_short: 0.05                      # short測量的權重
+    
+    # TF和通信參數
+    tf_broadcast: true                 # 是否廣播TF變換
+    transform_tolerance: 1.0           # TF變換的容忍時間（秒）
+    scan_topic: scan                   # 雷射掃描話題名稱
+    map_topic: map                     # 地圖話題名稱
+    
+    # 初始位姿設定
+    always_reset_initial_pose: true    # 是否總是重置初始位姿
+    set_initial_pose: true             # 是否設定初始位姿
+    initial_pose:                      # 初始位姿參數
+        x: 0.0                         # 初始X座標（米）
+        y: 0.0                         # 初始Y座標（米）
+        yaw: 0.0                       # 初始偏航角（弧度）

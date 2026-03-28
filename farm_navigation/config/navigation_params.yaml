@@ -1,0 +1,19 @@
+# navigation_params.yaml
+navigation_system:
+  # 作業參數
+  row_count: 10              # 土畦總數
+  row_length: 50.0           # 土畦長度(米)
+  row_spacing: 1.35          # 畦間距離
+  
+  # 速度參數
+  forward_speed: 0.3         # 行內前進速度
+  approach_speed: 0.1        # 接近速度
+  turn_speed: 0.15           # 轉彎速度
+  
+  # 控制參數
+  control_frequency: 10.0    # 控制頻率
+  safety_timeout: 5.0        # 安全超時時間
+  
+  # 轉彎參數
+  turn_distance: 1.35        # 轉彎距離
+  turn_angles: [90.0, 0.0, -90.0, 0.0]  # 四段轉彎角度

@@ -1,0 +1,35 @@
+ekf_filter_node:
+  ros__parameters:
+    use_sim_time: false
+    frequency: 20.0
+    sensor_timeout: 0.1
+    two_d_mode: true
+    
+    # 座標系設定
+    map_frame: map
+    odom_frame: odom_filtered 
+    base_link_frame: base_link
+    world_frame: map
+    
+    # 發布TF
+    publish_tf: true
+    
+    # AMCL位置融合
+    pose0: /amcl_pose
+    pose0_config: [true, true, false,    # x, y, z
+                   false, false, true,   # roll, pitch, yaw
+                   false, false, false,  # x_dot, y_dot, z_dot
+                   false, false, false,  # roll_dot, pitch_dot, yaw_dot
+                   false, false, false]  # x_ddot, y_ddot, z_ddot
+    pose0_relative: false
+    pose0_rejection_threshold: 3.0
+    
+    # ICP odometry速度融合
+    odom0: /icp_odom
+    odom0_config: [true, true, false,  # x, y, z
+                   false, false, false,  # roll, pitch, yaw
+                   true, true, false,    # x_dot, y_dot, z_dot
+                   false, false, true,   # roll_dot, pitch_dot, yaw_dot
+                   false, false, false]  # x_ddot, y_ddot, z_ddot
+    odom0_relative: false
+    odom0_differential: false

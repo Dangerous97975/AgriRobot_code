@@ -1,0 +1,33 @@
+fsm_controller:
+  ros__parameters:
+    # 基本導航參數
+    totals_rows: 10 # 溫室土畦總行數
+    row_spacing: 1.0 # 土畦間距(公尺)
+    forward_speed: 0.1 # 前進速度(公尺/秒)
+    turn_speed: 0.3 # 轉彎速度(公尺/秒)
+
+    # 角度控制參數
+    rotation_tolerance: 5.0 # 旋轉容忍度(度)
+    rotation_timeout: 10.0 # 旋轉超時(秒)
+    
+
+in_out_row_detector:
+  ros__parameters:
+    # 土畦進出偵測參數
+    slice_thickness: 0.1 # 切片厚度(公尺)
+    iqr_threshold: 0.03 # IQR閾值(公尺)
+
+
+visual_nav_line_detector:
+  ros__parameters:
+    voxel_size: 0.01 # 體素大小(公尺)
+    slice_thickness: 0.05 # 切片厚度(公尺)
+    min_line_length: 0.5 # 最小線段長度(公尺)
+
+
+visual_navigation_controller:
+  ros__parameters:
+    target_velocity: 0.3 # 目標速度(公尺/秒)
+    max_steering_angle: 10.0 # 最大轉向角度(度)
+    max_lateral_error: 0.5 # 最大橫向誤差(公尺)
+    navigation_enabled: true # 是否啟用導航

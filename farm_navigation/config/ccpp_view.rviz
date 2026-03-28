@@ -1,0 +1,41 @@
+# rviz/ccpp_view.rviz
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Expanded: ~
+      Splitter Ratio: 0.5
+    Tree Height: 700
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Tool Properties
+    Name: Tool Properties
+    
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Map
+      Name: Map
+      Topic: /map
+      Value: true
+    - Class: rviz_default_plugins/Path
+      Name: Coverage Path
+      Topic: /coverage_path
+      Color: 0; 255; 0
+      Line Width: 0.1
+      Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Name: Coverage Markers
+      Topic: /coverage_markers
+      Value: true
+  Global Options:
+    Fixed Frame: map
+    Frame Rate: 30
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 30
+      Pitch: 0.785398
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz_default_plugins)
+      Yaw: 0.785398

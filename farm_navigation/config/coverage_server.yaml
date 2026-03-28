@@ -1,0 +1,32 @@
+# coverage_server.yaml
+# 用來做農田的全覆蓋路徑規劃
+coverage_server:
+  ros__parameters:
+    # 通用服務器參數
+    costmap_topic: local_costmap/costmap_raw
+    footprint_topic: local_costmap/published_footprint
+    robot_base_frame: base_link
+    transform_tolerance: 0.1
+    planner_plugins: ["GridBased"]
+    use_sim_time: true
+    
+    # 網格型規劃器參數
+    GridBased:
+      plugin: "opennav_coverage::GridBased"
+      # 運動模式: "spiral", "spiral_stc", "boustrophedon", "boustrophedon_spiral_stc", "random"
+      motion_pattern: boustrophedon
+      # 點的處理方式: "bresenham", "simple"
+      line_processing_type: bresenham
+      # 起始單元格選擇: "center", "corner", "custom"
+      starting_cell_type: corner
+      # 如果是custom，則用這些參數定義起始點
+      starting_cell_x: 0.0
+      starting_cell_y: 0.0
+      # 機器人覆蓋寬度 (m)
+      robot_width: 0.3
+      # 網格的解析度 (m/cell)
+      grid_resolution: 0.1
+      # 處理單元格時的膨脹閾值 (cells)
+      inflation_cell_radius: 1
+      # 能否規劃進入未知區域 (true/false)
+      allow_unknown: false
